@@ -17,9 +17,9 @@ struct NBATrackerApp: App {
                     Label("Search", systemImage: "magnifyingglass")
                         .foregroundColor(Color.theme.accent)
                 }
-                .tag(1)
+                .tag(0)
                 
-                Text("Livescores")
+                ScoreboardView()
                 .tabItem {
                     Label("Games", systemImage: "sportscourt")
                         .foregroundColor(Color.theme.accent)
