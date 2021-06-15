@@ -8,18 +8,52 @@
 
 /* Begin PBXBuildFile section */
 		919197B32676CADF006F6A7B /* NBATrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197B22676CADF006F6A7B /* NBATrackerApp.swift */; };
-		919197B52676CADF006F6A7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197B42676CADF006F6A7B /* ContentView.swift */; };
 		919197B72676CAE2006F6A7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 919197B62676CAE2006F6A7B /* Assets.xcassets */; };
 		919197BA2676CAE2006F6A7B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 919197B92676CAE2006F6A7B /* Preview Assets.xcassets */; };
+		919197C82676CB37006F6A7B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197C72676CB37006F6A7B /* Color.swift */; };
+		919197CB2676CB46006F6A7B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197CA2676CB46006F6A7B /* NetworkingManager.swift */; };
+		919197CE2676CB4F006F6A7B /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197CD2676CB4F006F6A7B /* LocalFileManager.swift */; };
+		919197D12676CB6E006F6A7B /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197D02676CB6E006F6A7B /* PreviewProvider.swift */; };
+		919197D72676E239006F6A7B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197D62676E239006F6A7B /* Endpoint.swift */; };
+		919197DA2676FE2A006F6A7B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197D92676FE2A006F6A7B /* Player.swift */; };
+		919197DD2677021A006F6A7B /* PlayerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197DC2677021A006F6A7B /* PlayerDetails.swift */; };
+		919197E026770224006F6A7B /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197DF26770224006F6A7B /* Team.swift */; };
+		91F2C6DC26771C2C0064E3C5 /* PlayerDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6DB26771C2C0064E3C5 /* PlayerDataService.swift */; };
+		91F2C6DF26771C470064E3C5 /* PlayerDetailDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6DE26771C470064E3C5 /* PlayerDetailDataService.swift */; };
+		91F2C6E226771C700064E3C5 /* PlayerImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6E126771C700064E3C5 /* PlayerImageService.swift */; };
+		91F2C6EC26772CFC0064E3C5 /* PlayerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6EB26772CFC0064E3C5 /* PlayerImageView.swift */; };
+		91F2C6F026772D370064E3C5 /* PlayerImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6EF26772D370064E3C5 /* PlayerImageViewModel.swift */; };
+		91F2C6F326772EBD0064E3C5 /* PlayerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6F226772EBD0064E3C5 /* PlayerRowView.swift */; };
+		91F2C6F626772FBA0064E3C5 /* PlayerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6F526772FBA0064E3C5 /* PlayerListView.swift */; };
+		91F2C6F9267730010064E3C5 /* PlayerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6F8267730010064E3C5 /* PlayerListViewModel.swift */; };
+		91F2C6FC2677310E0064E3C5 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6FB2677310E0064E3C5 /* SearchBarView.swift */; };
+		91F2C6FF267733330064E3C5 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F2C6FE267733330064E3C5 /* UIApplication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		919197AF2676CADF006F6A7B /* NBATracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBATracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		919197B22676CADF006F6A7B /* NBATrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBATrackerApp.swift; sourceTree = "<group>"; };
-		919197B42676CADF006F6A7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		919197B62676CAE2006F6A7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		919197B92676CAE2006F6A7B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		919197BB2676CAE2006F6A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		919197C72676CB37006F6A7B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		919197CA2676CB46006F6A7B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		919197CD2676CB4F006F6A7B /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
+		919197D02676CB6E006F6A7B /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
+		919197D62676E239006F6A7B /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		919197D92676FE2A006F6A7B /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		919197DC2677021A006F6A7B /* PlayerDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetails.swift; sourceTree = "<group>"; };
+		919197DF26770224006F6A7B /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		91F2C6DB26771C2C0064E3C5 /* PlayerDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDataService.swift; sourceTree = "<group>"; };
+		91F2C6DE26771C470064E3C5 /* PlayerDetailDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailDataService.swift; sourceTree = "<group>"; };
+		91F2C6E126771C700064E3C5 /* PlayerImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerImageService.swift; sourceTree = "<group>"; };
+		91F2C6EB26772CFC0064E3C5 /* PlayerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerImageView.swift; sourceTree = "<group>"; };
+		91F2C6EF26772D370064E3C5 /* PlayerImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerImageViewModel.swift; sourceTree = "<group>"; };
+		91F2C6F226772EBD0064E3C5 /* PlayerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRowView.swift; sourceTree = "<group>"; };
+		91F2C6F526772FBA0064E3C5 /* PlayerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListView.swift; sourceTree = "<group>"; };
+		91F2C6F8267730010064E3C5 /* PlayerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewModel.swift; sourceTree = "<group>"; };
+		91F2C6FB2677310E0064E3C5 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		91F2C6FE267733330064E3C5 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +86,11 @@
 		919197B12676CADF006F6A7B /* NBATracker */ = {
 			isa = PBXGroup;
 			children = (
-				919197B22676CADF006F6A7B /* NBATrackerApp.swift */,
-				919197B42676CADF006F6A7B /* ContentView.swift */,
+				919197C52676CB01006F6A7B /* Utilities */,
+				919197C42676CAF9006F6A7B /* Extensions */,
+				919197C62676CB07006F6A7B /* Services */,
+				919197C32676CAF5006F6A7B /* Models */,
+				919197C22676CAEC006F6A7B /* Core */,
 				919197B62676CAE2006F6A7B /* Assets.xcassets */,
 				919197BB2676CAE2006F6A7B /* Info.plist */,
 				919197B82676CAE2006F6A7B /* Preview Content */,
@@ -67,6 +104,100 @@
 				919197B92676CAE2006F6A7B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		919197C22676CAEC006F6A7B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				919197B22676CADF006F6A7B /* NBATrackerApp.swift */,
+				91F2C6E926772CD80064E3C5 /* Components */,
+				91F2C6E52677241B0064E3C5 /* PlayerList */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		919197C32676CAF5006F6A7B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				919197D92676FE2A006F6A7B /* Player.swift */,
+				919197DC2677021A006F6A7B /* PlayerDetails.swift */,
+				919197DF26770224006F6A7B /* Team.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		919197C42676CAF9006F6A7B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				919197C72676CB37006F6A7B /* Color.swift */,
+				919197D02676CB6E006F6A7B /* PreviewProvider.swift */,
+				91F2C6FE267733330064E3C5 /* UIApplication.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		919197C52676CB01006F6A7B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				919197CA2676CB46006F6A7B /* NetworkingManager.swift */,
+				919197CD2676CB4F006F6A7B /* LocalFileManager.swift */,
+				919197D62676E239006F6A7B /* Endpoint.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		919197C62676CB07006F6A7B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				91F2C6DB26771C2C0064E3C5 /* PlayerDataService.swift */,
+				91F2C6DE26771C470064E3C5 /* PlayerDetailDataService.swift */,
+				91F2C6E126771C700064E3C5 /* PlayerImageService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		91F2C6E52677241B0064E3C5 /* PlayerList */ = {
+			isa = PBXGroup;
+			children = (
+				91F2C6E7267726A80064E3C5 /* ViewModels */,
+				91F2C6E6267726A20064E3C5 /* Views */,
+			);
+			path = PlayerList;
+			sourceTree = "<group>";
+		};
+		91F2C6E6267726A20064E3C5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				91F2C6F226772EBD0064E3C5 /* PlayerRowView.swift */,
+				91F2C6F526772FBA0064E3C5 /* PlayerListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		91F2C6E7267726A80064E3C5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				91F2C6F8267730010064E3C5 /* PlayerListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		91F2C6E926772CD80064E3C5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				91F2C6EA26772CDF0064E3C5 /* PlayerImage */,
+				91F2C6FB2677310E0064E3C5 /* SearchBarView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		91F2C6EA26772CDF0064E3C5 /* PlayerImage */ = {
+			isa = PBXGroup;
+			children = (
+				91F2C6EB26772CFC0064E3C5 /* PlayerImageView.swift */,
+				91F2C6EF26772D370064E3C5 /* PlayerImageViewModel.swift */,
+			);
+			path = PlayerImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +269,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				919197B52676CADF006F6A7B /* ContentView.swift in Sources */,
+				91F2C6DC26771C2C0064E3C5 /* PlayerDataService.swift in Sources */,
+				919197D72676E239006F6A7B /* Endpoint.swift in Sources */,
+				919197D12676CB6E006F6A7B /* PreviewProvider.swift in Sources */,
+				919197CB2676CB46006F6A7B /* NetworkingManager.swift in Sources */,
+				91F2C6E226771C700064E3C5 /* PlayerImageService.swift in Sources */,
+				919197DA2676FE2A006F6A7B /* Player.swift in Sources */,
+				919197CE2676CB4F006F6A7B /* LocalFileManager.swift in Sources */,
+				91F2C6FF267733330064E3C5 /* UIApplication.swift in Sources */,
 				919197B32676CADF006F6A7B /* NBATrackerApp.swift in Sources */,
+				91F2C6F026772D370064E3C5 /* PlayerImageViewModel.swift in Sources */,
+				91F2C6F626772FBA0064E3C5 /* PlayerListView.swift in Sources */,
+				91F2C6F9267730010064E3C5 /* PlayerListViewModel.swift in Sources */,
+				91F2C6FC2677310E0064E3C5 /* SearchBarView.swift in Sources */,
+				919197C82676CB37006F6A7B /* Color.swift in Sources */,
+				919197E026770224006F6A7B /* Team.swift in Sources */,
+				91F2C6EC26772CFC0064E3C5 /* PlayerImageView.swift in Sources */,
+				919197DD2677021A006F6A7B /* PlayerDetails.swift in Sources */,
+				91F2C6F326772EBD0064E3C5 /* PlayerRowView.swift in Sources */,
+				91F2C6DF26771C470064E3C5 /* PlayerDetailDataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
