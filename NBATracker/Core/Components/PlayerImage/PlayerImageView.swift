@@ -33,8 +33,16 @@ struct PlayerImageView: View {
 
 struct PlayerImageView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerImageView(player: dev.activePlayer1)
-            .padding()
-            .previewLayout(.sizeThatFits)
+        Group {
+            PlayerImageView(player: dev.activePlayer1)
+                .padding()
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.light)
+            
+            PlayerImageView(player: dev.activePlayer2)
+                .padding()
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
+        }
     }
 }
