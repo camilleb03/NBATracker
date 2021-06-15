@@ -1,5 +1,5 @@
 //
-//  PlayerListView.swift
+//  SearchLeagueView.swift
 //  NBATracker
 //
 //  Created by Camille Bourbonnais on 2021-06-14.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct PlayerListView: View {
+struct SearchLeagueView: View {
     
-    @StateObject private var vm = PlayerListViewModel()
+    @StateObject private var vm = SearchLeagueViewModel()
     
     var body: some View {
         ZStack {
@@ -21,7 +21,7 @@ struct PlayerListView: View {
             VStack {
                 SearchBarView(searchText: $vm.searchText)
                 
-                allPlayersList
+                allResultsList
                 
                 Spacer(minLength: 0)
             }
@@ -29,18 +29,24 @@ struct PlayerListView: View {
     }
 }
 
-struct PlayerListView_Previews: PreviewProvider {
+struct SearchLeagueView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerListView()
+        SearchLeagueView()
     }
 }
 
-extension PlayerListView {
+extension SearchLeagueView {
     
-    private var allPlayersList: some View {
+    private var allResultsList: some View {
         List {
+            
             ForEach(vm.allPlayers) { player in
                 PlayerRowView(player: player)
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+            }
+            
+            ForEach(vm.allTeams) { team in
+                TeamRowView(team: team)
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
             }
         }

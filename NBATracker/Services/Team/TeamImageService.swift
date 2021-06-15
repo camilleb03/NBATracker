@@ -1,5 +1,5 @@
 //
-//  PlayerImageService.swift
+//  TeamImageService.swift
 //  NBATracker
 //
 //  Created by Camille Bourbonnais on 2021-06-14.
@@ -9,34 +9,34 @@ import Foundation
 import SwiftUI
 import Combine
 
-class PlayerImageService {
+class TeamImageService {
     
     @Published var image: UIImage? = nil
     
     private var imageSubscription: AnyCancellable?
-    private let player: Player
+    private let teamTricode: String
     private let fileManager = LocalFileManager.instance
-    private let folderName = "player_images"
+    private let folderName = "team_images"
     private let imageName: String
     
-    init(player: Player) {
-        self.player = player
-        self.imageName = player.id
-        getCoinImage()
+    init(teamTricode: String) {
+        self.teamTricode = teamTricode
+        self.imageName = teamTricode
+        getTeamImage()
     }
     
-    private func getCoinImage() {
+    private func getTeamImage() {
         if let savedImage = fileManager.getImage(imageName: self.imageName, folderName: folderName) {
             image = savedImage
             print("Retrieved image from File Manager")
         } else {
-            downloadCoinImage()
+            downloadTeamImage()
             print("Downloading image now")
         }
     }
     
-    private func downloadCoinImage() {
-        let url = Endpoint.headshot(for: player.id).headshotURL
+    private func downloadTeamImage() {
+        let url = Endpoint.logo(for: teamTricode).logoURL
         imageSubscription = NetworkingManager.download(url: url)
             .tryMap({ (data) -> UIImage? in
                 return UIImage(data: data)

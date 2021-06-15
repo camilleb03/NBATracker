@@ -1,5 +1,5 @@
 //
-//  PlayerImageView.swift
+//  TeamImageView.swift
 //  NBATracker
 //
 //  Created by Camille Bourbonnais on 2021-06-14.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct PlayerImageView: View {
+struct TeamImageView: View {
     
-    @StateObject private var vm: PlayerImageViewModel
+    @StateObject private var vm: TeamImageViewModel
     
-    init(player: Player) {
-        _vm = StateObject(wrappedValue: PlayerImageViewModel(player: player))
+    init(teamTricode: String) {
+        _vm = StateObject(wrappedValue: TeamImageViewModel(teamTricode: teamTricode))
     }
     
     var body: some View {
@@ -24,22 +24,22 @@ struct PlayerImageView: View {
             } else if vm.isLoading {
                 ProgressView()
             } else {
-                Image(systemName: "person")
+                Image(systemName: "person.3")
                     .foregroundColor(Color.theme.secondaryText)
             }
         }
     }
 }
 
-struct PlayerImageView_Previews: PreviewProvider {
+struct TeamImageView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PlayerImageView(player: dev.activePlayer1)
+            TeamImageView(teamTricode: dev.team1.tricode)
                 .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
             
-            PlayerImageView(player: dev.activePlayer2)
+            TeamImageView(teamTricode: dev.team2.tricode)
                 .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)

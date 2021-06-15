@@ -12,16 +12,16 @@ struct NBATrackerApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                PlayerListView()
+                SearchLeagueView()
                 .tabItem {
-                    Label("Players", systemImage: "person.3")
+                    Label("Search", systemImage: "magnifyingglass")
                         .foregroundColor(Color.theme.accent)
                 }
                 .tag(1)
                 
                 Text("Livescores")
                 .tabItem {
-                    Label("Live", systemImage: "sportscourt")
+                    Label("Games", systemImage: "sportscourt")
                         .foregroundColor(Color.theme.accent)
                 }
                 .tag(1)
