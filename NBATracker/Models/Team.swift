@@ -102,6 +102,8 @@ struct Team: Identifiable {
     let city: String
     let tricode: String
     let urlName: String
+    let conferenceName: String
+    let divisionName: String
     
     var fullName: String {
         return "\(city) \(name)"
@@ -113,8 +115,8 @@ extension Team: Decodable {
     enum CodingKeys: String, CodingKey {
         case id = "teamId"
         case name = "nickname"
-        case city = "city"
-        case tricode = "tricode"
-        case urlName = "urlName"
+        case city, tricode, urlName
+        case conferenceName = "confName"
+        case divisionName = "divName"
     }
 }

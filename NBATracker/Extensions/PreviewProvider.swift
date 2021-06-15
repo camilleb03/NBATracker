@@ -95,4 +95,20 @@ class DeveloperPreview {
         lastAffiliation: "UNLV/USA",
         country: "USA"
     )
+    
+    let team1 = Team(id: "1610612763",
+                     name: "Grizzlies",
+                     city: "Memphis",
+                     tricode: "MEM",
+                     urlName: "grizzlies",
+                     conferenceName: "West",
+                     divisionName: "Southwest")
+    
+    let team2 = Team(id: "1610612761",
+                     name: "Raptors",
+                     city: "Toronto",
+                     tricode: "TOR",
+                     urlName: "raptors",
+                     conferenceName: "East",
+                     divisionName: "Atlantic")
 }
