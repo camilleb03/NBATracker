@@ -31,16 +31,20 @@ extension ScoreboardRawResponse: Decodable {
     }
 }
 
-struct Scoreboard {
+struct Scoreboard: Identifiable {
     
     let id: String
     let gameUrlCode: String
-    let startTimeUTC: Date
+    let startTimeUTC: String
     let currentPeriod: Int
     let clock: String
     let visitorTeam: SBTeam
     let homeTeam: SBTeam
     var gameStatus: GameStatus
+    
+    var startTimeDate: Date {
+        return Date(gameDateString: startTimeUTC)
+    }
     
     struct SBTeam: Decodable {
         
@@ -53,12 +57,12 @@ struct Scoreboard {
     
     public func getGameInfoString() -> String {
         switch gameStatus {
-            case .isUnitiated:
-                return startTimeUTC.convertDateToLocalTimeShortString()
+            case .isNotStarted:
+                return startTimeDate.convertDateToLocalTimeShortString()
             case .isPlaying:
                 return "Q\(currentPeriod) | \(clock)"
             case .isHalftime:
-                return "HALFTIME"
+                return "HALF"
             case .isEndOfPeriod:
                 return "END OF Q\(currentPeriod)"
             case .isFinished:
@@ -91,7 +95,7 @@ extension Scoreboard: Decodable {
         self.id = try container.decode(String.self, forKey: .id)
         self.gameUrlCode = try container.decode(String.self, forKey: .gameUrlCode)
         
-        self.startTimeUTC = try container.decode(Date.self, forKey: .startTimeUTC)
+        self.startTimeUTC = try container.decode(String.self, forKey: .startTimeUTC)
         self.clock = try container.decode(String.self, forKey: .clock)
         
         self.visitorTeam = try container.decode(SBTeam.self, forKey: .visitorTeam)
@@ -113,7 +117,7 @@ extension Scoreboard: Decodable {
 }
 
 enum GameStatus {
-    case isUnitiated
+    case isNotStarted
     case isPlaying
     case isHalftime
     case isEndOfPeriod
@@ -124,7 +128,8 @@ enum GameStatus {
         
         if statusNum == 1 {
             // Game not started
-            return .isUnitiated
+            return .isNotStarted
+            
         } else if statusNum == 2 {
             if isHalftime {
                 // Game is in halftime
@@ -136,6 +141,7 @@ enum GameStatus {
             }
             // Game is ongoing
             return .isPlaying
+            
         } else if statusNum == 3 {
             // Game is over
             return .isFinished

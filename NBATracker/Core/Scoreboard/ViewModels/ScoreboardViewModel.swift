@@ -26,14 +26,23 @@ class ScoreboardViewModel: ObservableObject {
         
         // updates allScoreboards
         scoreboardDataService.$allScoreboards
-        .sink { [weak self] (returnedScoreboard) in
-            self?.allScoreboards = returnedScoreboard
-        }
-        .store(in: &cancellables)
+            .sink { [weak self] (returnedScoreboard) in
+                self?.allScoreboards = returnedScoreboard
+//                self?.allScoreboards.append(contentsOf: [
+//                    DeveloperPreview.instance.scoreboardNotStarted,
+//                    DeveloperPreview.instance.scoreboardIsEndOfPeriod,
+//                    DeveloperPreview.instance.scoreboardIsPlaying,
+//                    DeveloperPreview.instance.scoreboardIsHalftime,
+//                    DeveloperPreview.instance.scoreboardIsFinished,
+//                ])
+                self?.isLoading = false
+            }
+            .store(in: &cancellables)
     }
     
-    func reloadData() {
+    func reloadData(for date: Date = Date()) {
         isLoading = true
-        scoreboardDataService.getScoreboards()
+        scoreboardDataService.getScoreboards(for: date)
+        HapticManager.notification(type: .success)
     }
 }

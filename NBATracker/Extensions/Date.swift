@@ -1,5 +1,5 @@
 //
-//  DateFormatter.swift
+//  Date.swift
 //  NBATracker
 //
 //  Created by Camille Bourbonnais on 2021-06-15.
@@ -8,6 +8,14 @@
 import Foundation
 
 extension Date {
+    
+    // "2021-03-13T20:49:26.606Z"
+    init(gameDateString: String) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let date = formatter.date(from: gameDateString) ?? Date()
+        self.init(timeInterval: 0, since: date)
+    }
     
     private static let localTimeShort: DateFormatter = {
         let formatter = DateFormatter()
