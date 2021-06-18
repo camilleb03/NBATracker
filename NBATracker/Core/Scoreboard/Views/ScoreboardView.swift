@@ -10,7 +10,6 @@ import SwiftUI
 struct ScoreboardView: View {
     
     @StateObject private var vm = ScoreboardViewModel()
-    @State private var gameDate = Date()
     
     var body: some View {
         ZStack {
@@ -22,11 +21,13 @@ struct ScoreboardView: View {
             VStack {
                 header
                 
-                ScrollView {
-                    ForEach(vm.allScoreboards) { scoreboard in
-                        ScoreboardRowView(scoreboard: scoreboard)
-                    }
+                if !vm.allScoreboards.isEmpty {
+                    scoreboardsList
+                } else {
+                    Text("No results found")
                 }
+                
+                Spacer(minLength: 0)
             }
         }
     }
@@ -46,6 +47,7 @@ struct ScoreboardView_Previews: PreviewProvider {
 }
 
 extension ScoreboardView {
+    
     var header: some View {
         HStack {
             Text("Games")
@@ -56,23 +58,31 @@ extension ScoreboardView {
             
             Spacer()
             
-            DatePicker("", selection: $gameDate, displayedComponents: .date)
+            DatePicker("", selection: $vm.gameDate, displayedComponents: .date)
             
             Spacer()
             
             refreshButton
         }
-        .padding(.horizontal)
+        .padding()
     }
     
     private var refreshButton: some View {
         Button(action: {
             withAnimation(.linear(duration: 2.0)) {
-                vm.reloadData(for: gameDate)
+                vm.reloadData(for: vm.gameDate)
             }
         }, label: {
             Image(systemName: "goforward")
         })
         .rotationEffect(Angle(degrees: vm.isLoading ? 360 : 0), anchor: .center)
+    }
+    
+    private var scoreboardsList: some View {
+        ScrollView {
+            ForEach(vm.allScoreboards) { scoreboard in
+                ScoreboardRowView(scoreboard: scoreboard)
+            }
+        }
     }
 }

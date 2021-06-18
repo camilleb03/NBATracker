@@ -13,6 +13,7 @@ class ScoreboardViewModel: ObservableObject {
     @Published var allScoreboards: [Scoreboard] = []
     
     @Published var isLoading: Bool = false
+    @Published var gameDate: Date = Date()
     
     private let scoreboardDataService = ScoreboardDataService()
     
@@ -23,6 +24,12 @@ class ScoreboardViewModel: ObservableObject {
     }
     
     func addSubscribers() {
+        
+        $gameDate
+            .sink { [weak self] gameDate in
+                self?.reloadData(for: gameDate)
+            }
+            .store(in: &cancellables)
         
         // updates allScoreboards
         scoreboardDataService.$allScoreboards

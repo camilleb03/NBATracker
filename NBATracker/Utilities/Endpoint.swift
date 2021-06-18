@@ -51,7 +51,7 @@ extension Endpoint {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "cdn.nba.net"
-        components.path = "/assets/logos/teams/primary/web" + path
+        components.path = "/assets/logos/teams/secondary/web" + path
 
         guard let url = components.url else {
             preconditionFailure(

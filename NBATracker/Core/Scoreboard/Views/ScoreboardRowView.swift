@@ -12,25 +12,12 @@ struct ScoreboardRowView: View {
     let scoreboard: Scoreboard
     
     var body: some View {
-        HStack{
+        HStack {
+            TeamRecordView(team: scoreboard.visitorTeam)
             
-            TeamRecord(team: scoreboard.homeTeam)
+            gameInfo
             
-            HStack(spacing: 0) {
-                Spacer()
-                homeTeamScore
-                Spacer()
-                gameStatus
-                Spacer()
-                visitorTeamScore
-                Spacer()
-            }
-            .frame(maxWidth: .infinity)
-            .foregroundColor(
-                (scoreboard.gameStatus == .isFinished) ? Color.theme.secondaryText : (scoreboard.gameStatus == .isPlaying) ? Color.theme.green : (scoreboard.gameStatus == .isNotStarted) ? nil : Color.theme.red
-            )
-            
-            TeamRecord(team: scoreboard.visitorTeam)
+            TeamRecordView(team: scoreboard.homeTeam)
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -50,6 +37,10 @@ struct ScoreboardRowView_Previews: PreviewProvider {
             ScoreboardRowView(scoreboard: dev.scoreboardNotStarted)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
+            
+            ScoreboardRowView(scoreboard: dev.scoreboardNotStarted)
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
             
             ScoreboardRowView(scoreboard: dev.scoreboardIsPlaying)
                 .previewLayout(.sizeThatFits)
@@ -78,7 +69,7 @@ struct ScoreboardRowView_Previews: PreviewProvider {
     }
 }
 
-struct TeamRecord: View {
+struct TeamRecordView: View {
     
     let team: Scoreboard.SBTeam
     
@@ -94,13 +85,36 @@ struct TeamRecord: View {
 
 extension ScoreboardRowView {
     
+    private var gameInfo: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                Spacer(minLength: 5)
+                visitorTeamScore
+                Spacer(minLength: 5)
+                timeStatus
+                Spacer(minLength: 5)
+                homeTeamScore
+                Spacer(minLength: 5)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+
+            .foregroundColor(
+                (scoreboard.gameStatus == .isFinished) ? Color.theme.secondaryText : (scoreboard.gameStatus == .isPlaying) ? Color.theme.green : (scoreboard.gameStatus == .isNotStarted) ? nil : Color.theme.red
+            )
+            Text("\(scoreboard.visitorTeam.triCode) @ \(scoreboard.homeTeam.triCode)")
+                .font(.subheadline)
+                .foregroundColor(Color.theme.secondaryText)
+        }
+    }
+    
     private var homeTeamScore: some View {
         Text(scoreboard.homeTeam.score.isEmpty ? "-" : scoreboard.homeTeam.score)
             .font(.title)
             .bold()
     }
     
-    private var gameStatus: some View {
+    private var timeStatus: some View {
         Text(scoreboard.getGameInfoString())
             .font(.headline)
             .fontWeight(.semibold)
