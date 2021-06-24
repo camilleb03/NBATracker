@@ -9,22 +9,38 @@ import SwiftUI
 
 @main
 struct NBATrackerApp: App {
+    
+    @State var showLaunchView: Bool = true
+    
     var body: some Scene {
         WindowGroup {
-            TabView {
-                SearchLeagueView()
-                .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
-                        .foregroundColor(Color.theme.accent)
+            ZStack {
+                TabView {
+                    NavigationView {
+                        ScoreboardView()
+                            .navigationBarHidden(true)
+                    }
+                    .tabItem {
+                        Label("Games", systemImage: "sportscourt")
+                            .foregroundColor(Color.theme.accent)
+                    }
+                    .tag(0)
+                    
+                    SearchLeagueView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                            .foregroundColor(Color.theme.accent)
+                    }
+                    .tag(1)
                 }
-                .tag(0)
                 
-                ScoreboardView()
-                .tabItem {
-                    Label("Games", systemImage: "sportscourt")
-                        .foregroundColor(Color.theme.accent)
+                ZStack {
+                    if showLaunchView {
+                        LaunchView(showLaunchView: $showLaunchView)
+                            .transition(.move(edge: .leading))
+                    }
                 }
-                .tag(1)
+                .zIndex(2.0)
             }
         }
     }

@@ -11,14 +11,14 @@ import Combine
 class ScoreboardDataService {
     
     @Published var allScoreboards: [Scoreboard] = []
-    var scoreboardSubscription: AnyCancellable?
+    private var scoreboardSubscription: AnyCancellable?
     
     init() {
         getScoreboards()
     }
     
     func getScoreboards(for date: Date = Date()) {
-        let url = Endpoint.scoreboard(for: date.convertDateToyyyyMMddString()).NBAv2URL
+        let url = Endpoint.scoreboards(for: date.convertDateToyyyyMMddString()).NBAv2URL
         
         scoreboardSubscription =
             NetworkingManager.download(url: url)

@@ -89,8 +89,12 @@ extension Endpoint {
         Endpoint(path: "/current/standings_conference.json")
     }
 
-    static func scoreboard(for date: String) -> Self {
+    static func scoreboards(for date: String) -> Self {
         Endpoint(path: "/\(date)/scoreboard.json")
+    }
+    
+    static func boxscore(on date: String, for gameId: String) -> Self {
+        Endpoint(path: "/\(date)/\(gameId)_boxscore.json")
     }
 
     static func teams(for seasonYear: String) -> Self {

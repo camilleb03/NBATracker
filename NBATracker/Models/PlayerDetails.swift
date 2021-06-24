@@ -392,7 +392,7 @@ extension PlayerDetailRawResponse: Decodable {
 
 struct PlayerDetail: Decodable {
     let teamID: String?
-    let stats: Stats?
+    let stats: PlayerStats?
     
     enum CodingKeys: String, CodingKey {
         case teamID = "teamId"
@@ -400,7 +400,7 @@ struct PlayerDetail: Decodable {
     }
 }
 
-struct Stats: Codable {
+struct PlayerStats: Codable {
     let latest, careerSummary: CareerSummary?
     let regularSeason: RegularSeason?
 }

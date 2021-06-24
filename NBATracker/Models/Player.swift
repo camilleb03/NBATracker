@@ -168,7 +168,7 @@ struct Player: Identifiable {
     let id: String
     let firstName, lastName: String
     let temporaryDisplayName, teamID, jersey: String?
-    let isActive: Bool
+    let isActive: Bool?
     let pos, heightFeet, heightInches, heightMeters: String?
     let weightPounds, weightKilograms, dateOfBirthUTC: String?
     let teams: [TeamPlayed]?

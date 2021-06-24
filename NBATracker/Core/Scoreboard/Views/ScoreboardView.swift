@@ -11,6 +11,9 @@ struct ScoreboardView: View {
     
     @StateObject private var vm = ScoreboardViewModel()
     
+    @State private var selectedScoreboard: Scoreboard? = nil
+    @State private var showScoreboardDetailView: Bool = false
+    
     var body: some View {
         ZStack {
             // background layer
@@ -30,6 +33,14 @@ struct ScoreboardView: View {
                 Spacer(minLength: 0)
             }
         }
+        .background(
+            NavigationLink(
+                destination: ScoreboardDetailLoadingView(scoreboard: $selectedScoreboard),
+                isActive: $showScoreboardDetailView,
+                label: {
+                    EmptyView()
+                })
+        )
     }
 }
 
@@ -82,7 +93,15 @@ extension ScoreboardView {
         ScrollView {
             ForEach(vm.allScoreboards) { scoreboard in
                 ScoreboardRowView(scoreboard: scoreboard)
+                    .onTapGesture {
+                        segue(scoreboard: scoreboard)
+                    }
             }
         }
+    }
+    
+    private func segue(scoreboard: Scoreboard) {
+        selectedScoreboard = scoreboard
+        showScoreboardDetailView.toggle()
     }
 }
