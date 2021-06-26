@@ -83,13 +83,17 @@ struct ActivePlayer: Decodable {
     }
 }
 
+struct BasePlayer: Decodable {
+    let personId, firstName, lastName: String
+}
+
 struct StatsLeaders: Decodable {
     let points, rebounds, assists: GameStat
 }
 
 struct GameStat: Decodable {
     let value: String
-    let players: [Player]
+    let players: [BasePlayer]
 }
 
 struct Totals: Decodable {

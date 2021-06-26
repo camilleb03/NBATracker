@@ -33,8 +33,8 @@ class ScoreboardViewModel: ObservableObject {
         
         // updates allScoreboards
         scoreboardDataService.$allScoreboards
-            .sink { [weak self] (returnedScoreboard) in
-                self?.allScoreboards = returnedScoreboard
+            .sink { [weak self] (returnedScoreboards) in
+                self?.allScoreboards = returnedScoreboards
 //                self?.allScoreboards.append(contentsOf: [
 //                    DeveloperPreview.instance.scoreboardNotStarted,
 //                    DeveloperPreview.instance.scoreboardIsEndOfPeriod,

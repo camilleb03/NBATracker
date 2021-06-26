@@ -18,13 +18,13 @@ class ScoreboardDetailViewModel: ObservableObject {
     
     init(scoreboard: Scoreboard) {
         self.scoreboard = scoreboard
-        self.boxscoreDataService = BoxscoreDataService(gameDate: scoreboard.startTimeDate, gameId: scoreboard.id)
+        // FIXME: If the game starts at "2021-06-25T01:00:00.000Z", scoreboard.startTimeDate will be 20210625, not 20210624
+        self.boxscoreDataService = BoxscoreDataService(gameDate: Date(), gameId: scoreboard.id)
         self.addSubscribers()
     }
     
     private func addSubscribers() {
         boxscoreDataService.$boxscore
-            .combineLatest($scoreboard)
             .map(mapBoxscoreToStatistics)
             .sink(receiveValue: { [weak self] (returnedStatistics) in
                 self?.gameStatistics = returnedStatistics
@@ -32,7 +32,7 @@ class ScoreboardDetailViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    private func mapBoxscoreToStatistics(boxscore: Boxscore?, scoreboard: Scoreboard) -> [GameStatistic] {
+    private func mapBoxscoreToStatistics(boxscore: Boxscore?) -> [GameStatistic] {
         if let boxscore = boxscore {
             print(boxscore)
         } else {

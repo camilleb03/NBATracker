@@ -46,13 +46,14 @@ struct Scoreboard: Identifiable {
         return Date(gameDateString: startTimeUTC)
     }
     
-    struct SBTeam: Decodable {
-        
-        let teamId: String
-        let triCode: String
-        let win: String
-        let loss: String
-        let score: String
+    var periodNames: [String] {
+        var periodNames: [String] = ["Q1", "Q2", "Q3", "Q4"]
+        if currentPeriod > 4 && homeTeam.linescore.count > 4 && visitorTeam.linescore.count > 4 {
+            for i in 5..<(currentPeriod + 1) {
+                periodNames.append("OT\(i-4)")
+            }
+        }
+        return periodNames
     }
     
     public func getGameInfoString() -> String {
@@ -97,7 +98,7 @@ extension Scoreboard: Decodable {
         
         self.startTimeUTC = try container.decode(String.self, forKey: .startTimeUTC)
         self.clock = try container.decode(String.self, forKey: .clock)
-        
+                
         self.visitorTeam = try container.decode(SBTeam.self, forKey: .visitorTeam)
         self.homeTeam = try container.decode(SBTeam.self, forKey: .homeTeam)
         
@@ -148,5 +149,54 @@ enum GameStatus {
         }
         // Not supposed to happen
         return .undefined
+    }
+}
+
+struct Arena: Decodable {
+    
+    let name: String
+    let city: String
+    let stateAbbr: String
+    let country: String
+    
+}
+
+struct SBTeam {
+    
+    let teamId: String
+    let triCode: String
+    let win: String
+    let loss: String
+    let score: String
+    let linescore: [String]
+    
+}
+
+extension SBTeam: Decodable {
+    
+    private enum RootKeys: String, CodingKey {
+        
+        case teamId, triCode, win, loss, score, linescore
+    }
+    
+    private struct Linescore: Decodable {
+        let score: String
+        
+        private enum ScoreKeys: String, CodingKey {
+            case score
+        }
+    }
+    
+    init(from decoder: Decoder) throws {
+        // Root level
+        let container = try decoder.container(keyedBy: RootKeys.self)
+        
+        self.teamId = try container.decode(String.self, forKey: .teamId)
+        self.triCode = try container.decode(String.self, forKey: .triCode)
+        self.win = try container.decode(String.self, forKey: .win)
+        self.loss = try container.decode(String.self, forKey: .loss)
+        self.score = try container.decode(String.self, forKey: .score)
+        let linescoreObject = try container.decode([Linescore].self, forKey: .linescore)
+        self.linescore = linescoreObject.isEmpty ? ["", "", "", ""] : linescoreObject.compactMap({ $0.score })
     }
 }

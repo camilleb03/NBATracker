@@ -71,7 +71,7 @@ struct ScoreboardRowView_Previews: PreviewProvider {
 
 struct TeamRecordView: View {
     
-    let team: Scoreboard.SBTeam
+    let team: SBTeam
     
     var body: some View {
         VStack(spacing: 0) {
