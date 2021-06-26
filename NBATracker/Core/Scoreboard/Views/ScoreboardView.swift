@@ -27,11 +27,18 @@ struct ScoreboardView: View {
                 if !vm.allScoreboards.isEmpty {
                     scoreboardsList
                 } else {
-                    Text("No results found")
+                    Text("No games found for \n \(vm.gameDate.convertDateTolocalDateMediumString())")
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                        .multilineTextAlignment(.center)
                 }
                 
                 Spacer(minLength: 0)
             }
+        }
+        .onAppear() {
+            print("Scoreboards appeared !")
+            refreshScoreboardDate()
         }
         .background(
             NavigationLink(
@@ -48,7 +55,6 @@ struct ScoreboardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ScoreboardView()
-                .previewDevice("iPhone 8")
                 .preferredColorScheme(.light)
             
             ScoreboardView()
@@ -78,10 +84,14 @@ extension ScoreboardView {
         .padding()
     }
     
+    private func refreshScoreboardDate() {
+        vm.reloadData(for: vm.gameDate)
+    }
+    
     private var refreshButton: some View {
         Button(action: {
             withAnimation(.linear(duration: 2.0)) {
-                vm.reloadData(for: vm.gameDate)
+                refreshScoreboardDate()
             }
         }, label: {
             Image(systemName: "goforward")

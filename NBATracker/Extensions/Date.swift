@@ -25,6 +25,14 @@ extension Date {
         return formatter
     }()
     
+    private static let localDateMedium: DateFormatter = {
+        let formatter = DateFormatter()
+        var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "UTC" }
+        formatter.locale = Locale.init(identifier: localTimeZoneAbbreviation)
+        formatter.dateStyle = .medium
+        return formatter
+    }()
+    
     private static let yyyyMMdd: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd"
@@ -37,5 +45,9 @@ extension Date {
     
     func convertDateToyyyyMMddString() -> String {
         return Date.yyyyMMdd.string(from: self)
+    }
+    
+    func convertDateTolocalDateMediumString() -> String {
+        return Date.localDateMedium.string(from: self)
     }
 }
