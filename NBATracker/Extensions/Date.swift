@@ -11,12 +11,10 @@ extension Date {
     
     // "2021-03-13T20:49:26.606Z"
     init(gameDateString: String) {
-        print("dateString init: \(gameDateString)")
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         let date = formatter.date(from: gameDateString) ?? Date()
-        print("date init: \(date)")
         self.init(timeInterval: 0, since: date)
     }
     
@@ -45,7 +43,6 @@ extension Date {
     }()
     
     func convertDateToLocalTimeShortString() -> String {
-        print("date local : \(self)")
         return Date.localTimeShort.string(from: self)
     }
     
