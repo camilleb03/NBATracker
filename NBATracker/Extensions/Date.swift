@@ -50,7 +50,7 @@ extension Date {
         return Date.yyyyMMdd.string(from: self)
     }
     
-    func convertDateTolocalDateMediumString() -> String {
+    func convertDateToLocalDateMediumString() -> String {
         return Date.localDateMedium.string(from: self)
     }
 }

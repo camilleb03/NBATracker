@@ -18,8 +18,7 @@ class ScoreboardDetailViewModel: ObservableObject {
     
     init(scoreboard: Scoreboard) {
         self.scoreboard = scoreboard
-        // FIXME: If the game starts at "2021-06-25T01:00:00.000Z", scoreboard.startTimeDate will be 20210625, not 20210624
-        self.boxscoreDataService = BoxscoreDataService(gameDate: Date(), gameId: scoreboard.id)
+        self.boxscoreDataService = BoxscoreDataService(gameDate: scoreboard.startTimeDate, gameId: scoreboard.id)
         self.addSubscribers()
     }
     

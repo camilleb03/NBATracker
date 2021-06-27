@@ -27,7 +27,7 @@ struct ScoreboardView: View {
                 if !vm.allScoreboards.isEmpty {
                     scoreboardsList
                 } else {
-                    Text("No games found for \n \(vm.gameDate.convertDateTolocalDateMediumString())")
+                    Text("No games found for \n \(vm.gameDate.convertDateToLocalDateMediumString())")
                         .font(.callout)
                         .fontWeight(.semibold)
                         .multilineTextAlignment(.center)

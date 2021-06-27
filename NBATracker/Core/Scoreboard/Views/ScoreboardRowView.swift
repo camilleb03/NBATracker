@@ -98,7 +98,6 @@ extension ScoreboardRowView {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 50)
-
             .foregroundColor(
                 (scoreboard.gameStatus == .isFinished) ? Color.theme.secondaryText : (scoreboard.gameStatus == .isPlaying) ? Color.theme.green : (scoreboard.gameStatus == .isNotStarted) ? nil : Color.theme.red
             )

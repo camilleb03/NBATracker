@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		91189C962687C5CA006A88B6 /* GameScoreTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91189C952687C5C9006A88B6 /* GameScoreTableView.swift */; };
+		91189C982687CDE5006A88B6 /* GameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91189C972687CDE5006A88B6 /* GameInfoView.swift */; };
 		912D88D226791C6A00AA3CCF /* TeamRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D88D126791C6A00AA3CCF /* TeamRowView.swift */; };
 		912D88DA267930E100AA3CCF /* Scoreboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D88D9267930E100AA3CCF /* Scoreboard.swift */; };
 		912D88DF2679326F00AA3CCF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D88DE2679326F00AA3CCF /* Date.swift */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		91189C952687C5C9006A88B6 /* GameScoreTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScoreTableView.swift; sourceTree = "<group>"; };
+		91189C972687CDE5006A88B6 /* GameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoView.swift; sourceTree = "<group>"; };
 		912D88D126791C6A00AA3CCF /* TeamRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRowView.swift; sourceTree = "<group>"; };
 		912D88D9267930E100AA3CCF /* Scoreboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scoreboard.swift; sourceTree = "<group>"; };
 		912D88DE2679326F00AA3CCF /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -111,6 +113,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		91189C992687CF87006A88B6 /* GameInfo */ = {
+			isa = PBXGroup;
+			children = (
+				91189C972687CDE5006A88B6 /* GameInfoView.swift */,
+			);
+			path = GameInfo;
+			sourceTree = "<group>";
+		};
+		91189C9A2687CF9D006A88B6 /* GameScoreTable */ = {
+			isa = PBXGroup;
+			children = (
+				91A651CE2686CD3F002042D7 /* GameColumnView.swift */,
+				91189C952687C5C9006A88B6 /* GameScoreTableView.swift */,
+			);
+			path = GameScoreTable;
+			sourceTree = "<group>";
+		};
 		912D88D82679309000AA3CCF /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +299,13 @@
 			path = Team;
 			sourceTree = "<group>";
 		};
+		91D56FBD2688047C007FA766 /* TeamTotals */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TeamTotals;
+			sourceTree = "<group>";
+		};
 		91DE18762680F5FA00AB091D /* ScoreboardDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,8 +319,9 @@
 			isa = PBXGroup;
 			children = (
 				91DE18782680F64100AB091D /* ScoreboardDetailView.swift */,
-				91A651CE2686CD3F002042D7 /* GameColumnView.swift */,
-				91189C952687C5C9006A88B6 /* GameScoreTableView.swift */,
+				91189C992687CF87006A88B6 /* GameInfo */,
+				91189C9A2687CF9D006A88B6 /* GameScoreTable */,
+				91D56FBD2688047C007FA766 /* TeamTotals */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -436,6 +463,7 @@
 				912D88D226791C6A00AA3CCF /* TeamRowView.swift in Sources */,
 				919197DA2676FE2A006F6A7B /* Player.swift in Sources */,
 				919197CE2676CB4F006F6A7B /* LocalFileManager.swift in Sources */,
+				91189C982687CDE5006A88B6 /* GameInfoView.swift in Sources */,
 				91FCDBD1267D20E700C5B4EE /* XMarkButton.swift in Sources */,
 				91F2C6FF267733330064E3C5 /* UIApplication.swift in Sources */,
 				919197B32676CADF006F6A7B /* NBATrackerApp.swift in Sources */,

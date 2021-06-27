@@ -40,6 +40,7 @@ struct Scoreboard: Identifiable {
     let clock: String
     let visitorTeam: SBTeam
     let homeTeam: SBTeam
+    let arenaInfo: Arena
     var gameStatus: GameStatus
     
     var startTimeDate: Date {
@@ -81,6 +82,7 @@ extension Scoreboard: Decodable {
         case gameUrlCode, statusNum, startTimeUTC, period, clock
         case visitorTeam = "vTeam"
         case homeTeam = "hTeam"
+        case arenaInfo = "arena"
         
         enum PeriodKeys: String, CodingKey {
             case currentPeriod = "current"
@@ -102,8 +104,9 @@ extension Scoreboard: Decodable {
         self.visitorTeam = try container.decode(SBTeam.self, forKey: .visitorTeam)
         self.homeTeam = try container.decode(SBTeam.self, forKey: .homeTeam)
         
-        let statusNum = try container.decode(Int.self, forKey: .statusNum)
+        self.arenaInfo = try container.decode(Arena.self, forKey: .arenaInfo)
         
+        let statusNum = try container.decode(Int.self, forKey: .statusNum)
         
         // Period level
         let periodContainer = try container.nestedContainer(keyedBy: CodingKeys.PeriodKeys.self, forKey: .period)
@@ -159,6 +162,9 @@ struct Arena: Decodable {
     let stateAbbr: String
     let country: String
     
+    var fullLocation: String {
+        return "\(city), \(country)"
+    }
 }
 
 struct SBTeam {

@@ -39,9 +39,12 @@ struct ScoreboardDetailView: View {
                 .ignoresSafeArea()
             
             // content
-            VStack {
+            VStack(spacing: 0) {
+                GameInfoView(scoreboard: scoreboard)
+                    .padding()
                 GameScoreTableView(scoreboard: scoreboard)
                     .padding()
+                Spacer()
             }
         }
         .navigationTitle(
@@ -68,11 +71,15 @@ struct ScoreboardDetailView_Previews: PreviewProvider {
                 ScoreboardDetailView(scoreboard: dev.scoreboardIsPlaying)
                     .preferredColorScheme(.dark)
             }
+            
+            NavigationView {
+                ScoreboardDetailView(scoreboard: dev.scoreboardIsFinished)
+                    .preferredColorScheme(.dark)
+            }
         }
     }
 }
 
 extension ScoreboardDetailView {
-    
     
 }

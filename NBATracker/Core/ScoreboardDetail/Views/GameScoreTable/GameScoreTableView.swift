@@ -14,9 +14,10 @@ struct GameScoreTableView: View {
     var body: some View {
         HStack(spacing: 0) {
             GameColumnView(
-                columnTitle: "Team",
+                columnTitle: " ",
                 homeRow: scoreboard.homeTeam.triCode,
                 visitorRow: scoreboard.visitorTeam.triCode, isCurrentPeriod: false)
+                .frame(minWidth: UIScreen.main.bounds.width / 8)
             
             ForEach(0..<scoreboard.periodNames.count) { index in
                 GameColumnView(
@@ -26,7 +27,7 @@ struct GameScoreTableView: View {
             }
             
             GameColumnView(
-                columnTitle: "Score",
+                columnTitle: "T",
                 homeRow: scoreboard.homeTeam.score,
                 visitorRow: scoreboard.visitorTeam.score, isCurrentPeriod: false)
         }
