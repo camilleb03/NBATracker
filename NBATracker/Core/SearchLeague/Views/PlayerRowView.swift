@@ -28,10 +28,10 @@ struct PlayerRowView: View {
                     .font(.headline)
                     .fontWeight(.bold)
                 
-//                Text("")
-//                    .font(.subheadline)
-//                    .fontWeight(.semibold)
-//                    .foregroundColor(Color.theme.secondaryText)
+                Text("Position: \(player.pos ?? "N/A") | Number: \(player.jersey ?? "N/A")")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color.theme.secondaryText)
             }
             
             Spacer()
@@ -43,6 +43,10 @@ struct PlayerRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             PlayerRowView(player: dev.activePlayer1)
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.light)
+            
+            PlayerRowView(player: dev.inactivePlayer2)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
             

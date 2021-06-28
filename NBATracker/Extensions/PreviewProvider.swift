@@ -23,17 +23,12 @@ class DeveloperPreview {
     let activePlayer1 = Player(
         id: "1629630", firstName: "Ja",
         lastName: "Morant",
-        temporaryDisplayName: "Morant, Ja",
+        isActive: true,
         teamID: "1610612763",
         jersey: "12",
-        isActive: true,
         pos: "G",
-        heightFeet: "6",
-        heightInches: "3",
-        heightMeters: "1.9",
-        weightPounds: "174",
-        weightKilograms: "78.9",
         dateOfBirthUTC: "1999-08-10",
+        heightMeters: 1.9, weightKilograms: 78.9,
         teams: [
             TeamPlayed(teamID: "1610612763", seasonStart: "2019", seasonEnd: "2020")
         ],
@@ -47,19 +42,13 @@ class DeveloperPreview {
     
     let activePlayer2 = Player(
         id: "1628449",
-        firstName: "Chris",
-        lastName: "Boucher",
-        temporaryDisplayName: "Boucher, Chris",
+        firstName: "Chris", lastName: "Boucher",
+        isActive: true,
         teamID: "1610612761",
         jersey: "25",
-        isActive: true,
         pos: "F-C",
-        heightFeet: "6",
-        heightInches: "9",
-        heightMeters: "2.06",
-        weightPounds: "200",
-        weightKilograms: "90.7",
         dateOfBirthUTC: "1993-01-11",
+        heightMeters: 2.06, weightKilograms: 90.7,
         teams: [
             TeamPlayed(teamID: "1610612744", seasonStart: "2017", seasonEnd: "2017"),
             TeamPlayed(teamID: "1610612761", seasonStart: "2018", seasonEnd: "2020")
@@ -73,24 +62,38 @@ class DeveloperPreview {
     )
     
     let inactivePlayer1 = Player(
+        id: "202236",
+        firstName: "DeMarcus",
+        lastName: "Cousins",
+        isActive: false,
+        teamID: nil,
+        jersey: "99",
+        pos: nil,
+        dateOfBirthUTC: nil,
+        heightMeters: nil, weightKilograms: nil,
+        teams: nil,
+        draft: nil,
+        nbaDebutYear: nil,
+        yearsPro: nil,
+        collegeName: nil,
+        lastAffiliation: nil,
+        country: nil
+    )
+    
+    let inactivePlayer2 = Player(
         id: "1627775",
         firstName: "Patrick",
         lastName: "McCaw",
-        temporaryDisplayName: nil,
-        teamID: "",
-        jersey: "22",
         isActive: false,
-        pos: "",
-        heightFeet: "-",
-        heightInches: "-",
-        heightMeters: "",
-        weightPounds: "",
-        weightKilograms: "",
+        teamID: nil,
+        jersey: "22",
+        pos: nil,
         dateOfBirthUTC: "1995-10-25",
-        teams: [],
+        heightMeters: nil, weightKilograms: nil,
+        teams: nil,
         draft: Draft(teamID: "1610612744", pickNum: "38", roundNum: "2", seasonYear: "2016"),
         nbaDebutYear: "2016",
-        yearsPro: "",
+        yearsPro: nil,
         collegeName: "UNLV",
         lastAffiliation: "UNLV/USA",
         country: "USA"
