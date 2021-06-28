@@ -22,23 +22,42 @@ struct ScoreboardView: View {
             
             // content layer
             VStack {
-                header
                 
                 if !vm.allScoreboards.isEmpty {
                     scoreboardsList
                 } else {
+                    Spacer()
+                    
                     Text("No games found for \n \(vm.gameDate.convertDateToLocalDateMediumString())")
                         .font(.callout)
                         .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
+                    
+                    Spacer()
                 }
                 
                 Spacer(minLength: 0)
             }
         }
+        .navigationTitle("Games")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(content: {
+            
+            ToolbarItem(placement: .navigationBarLeading) {
+                gameDatePicker
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                RefreshButton(isLoading: $vm.isLoading) {
+                    withAnimation(.linear(duration: 2.0)) {
+                        refreshScoreboardData()
+                    }
+                }
+            }
+        })
         .onAppear() {
             print("Scoreboards appeared !")
-            refreshScoreboardDate()
+            refreshScoreboardData()
         }
         .background(
             NavigationLink(
@@ -54,44 +73,33 @@ struct ScoreboardView: View {
 struct ScoreboardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ScoreboardView()
-                .preferredColorScheme(.light)
+            NavigationView {
+                ScoreboardView()
+            }
+            .preferredColorScheme(.light)
             
-            ScoreboardView()
-                .preferredColorScheme(.dark)
+            NavigationView {
+                ScoreboardView()
+            }
+            .preferredColorScheme(.dark)
         }
     }
 }
 
 extension ScoreboardView {
     
-    var header: some View {
-        HStack {
-            Text("Games")
-                .font(.title)
-                .fontWeight(.heavy)
-                .foregroundColor(Color.theme.accent)
-                .animation(.none)
-            
-            Spacer()
-            
-            DatePicker("", selection: $vm.gameDate, displayedComponents: .date)
-            
-            Spacer()
-            
-            refreshButton
-        }
-        .padding()
+    private var gameDatePicker: some View {
+        DatePicker("", selection: $vm.gameDate, displayedComponents: .date)
     }
     
-    private func refreshScoreboardDate() {
+    private func refreshScoreboardData() {
         vm.reloadData(for: vm.gameDate)
     }
     
     private var refreshButton: some View {
         Button(action: {
             withAnimation(.linear(duration: 2.0)) {
-                refreshScoreboardDate()
+                refreshScoreboardData()
             }
         }, label: {
             Image(systemName: "goforward")

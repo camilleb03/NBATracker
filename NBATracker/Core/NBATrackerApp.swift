@@ -18,7 +18,6 @@ struct NBATrackerApp: App {
                 TabView {
                     NavigationView {
                         ScoreboardView()
-                            .navigationBarHidden(true)
                     }
                     .tabItem {
                         Label("Games", systemImage: "sportscourt")
