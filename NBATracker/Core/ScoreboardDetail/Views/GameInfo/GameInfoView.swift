@@ -84,12 +84,13 @@ struct TeamInfoView: View {
             }
             .font(.callout)
             
-            TeamImageView(teamTricode: team.triCode)
+            TeamImageView(teamTricode: team.triCode, logoType: .primary)
                 .frame(width: 60, height: 60)
                 .padding(4)
                 .background(
                     RoundedRectangle(cornerRadius: 10.0)
-                        .strokeBorder(isHome ? Color.theme.green : Color.theme.blue, lineWidth: 2.0)
+                        .fill(isHome ? Color.theme.green : Color.theme.blue)
+                        //.strokeBorder(isHome ? Color.theme.green : Color.theme.blue, lineWidth: 2.0)
                 )
             
             Text(isHome ? "Home" : "Visitor")

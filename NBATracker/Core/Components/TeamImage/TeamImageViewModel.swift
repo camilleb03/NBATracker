@@ -15,12 +15,14 @@ class TeamImageViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
     private let teamTricode: String
+    private let logoType: LogoType
     private let dataService: TeamImageService
     private var cancellables = Set<AnyCancellable>()
     
-    init(teamTricode: String) {
+    init(teamTricode: String, logoType: LogoType) {
         self.teamTricode = teamTricode
-        self.dataService = TeamImageService(teamTricode: teamTricode)
+        self.logoType = logoType
+        self.dataService = TeamImageService(teamTricode: teamTricode, logoType: logoType)
         self.addSubscribers()
     }
     

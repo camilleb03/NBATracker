@@ -51,7 +51,7 @@ extension Endpoint {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "cdn.nba.net"
-        components.path = "/assets/logos/teams/secondary/web" + path
+        components.path = "/assets/logos" + path
 
         guard let url = components.url else {
             preconditionFailure(
@@ -105,8 +105,8 @@ extension Endpoint {
         Endpoint(path: "/\(seasonYear)/players.json")
     }
     
-    static func logo(for teamTriCode: String) -> Self {
-        Endpoint(path: "/\(teamTriCode).png")
+    static func logo(for teamTriCode: String, as type: LogoType) -> Self {
+        Endpoint(path: "/teams/\(type)/web/\(teamTriCode).png")
     }
     
     static func headshot(for personId: String) -> Self {
@@ -116,4 +116,9 @@ extension Endpoint {
     static func playerProfile(for seasonYear: String, by personID: String) -> Self {
         Endpoint(path: "/\(seasonYear)/players/\(personID)_profile.json")
     }
+}
+
+enum LogoType: String {
+    case secondary
+    case primary
 }

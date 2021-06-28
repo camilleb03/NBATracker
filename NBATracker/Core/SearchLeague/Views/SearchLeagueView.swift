@@ -64,7 +64,7 @@ extension SearchLeagueView {
         List {
             ForEach(vm.allPlayers) { player in
                 PlayerRowView(player: player)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
             }
         }
         .listStyle(PlainListStyle())
@@ -74,7 +74,7 @@ extension SearchLeagueView {
         List {
             ForEach(vm.allTeams) { team in
                 TeamRowView(team: team)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
             }
         }
         .listStyle(PlainListStyle())

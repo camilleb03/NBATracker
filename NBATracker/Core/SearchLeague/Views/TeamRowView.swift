@@ -13,9 +13,28 @@ struct TeamRowView: View {
     
     var body: some View {
         HStack {
-            TeamImageView(teamTricode: team.tricode)
+            TeamImageView(teamTricode: team.tricode, logoType: .primary)
                 .frame(width: 75, height: 75)
-            Text(team.fullName)
+                .padding(4)
+                .background(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .fill(Color.theme.secondaryBackgroundImage)
+                )
+             
+            Spacer()
+            
+            VStack {
+                Text(team.fullName)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                
+                Text("\(team.conferenceName) - \(team.divisionName)")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color.theme.secondaryText)
+            }
+            
+            Spacer()
         }
     }
 }

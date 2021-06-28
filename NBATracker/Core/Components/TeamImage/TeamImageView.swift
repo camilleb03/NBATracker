@@ -11,8 +11,8 @@ struct TeamImageView: View {
     
     @StateObject private var vm: TeamImageViewModel
     
-    init(teamTricode: String) {
-        _vm = StateObject(wrappedValue: TeamImageViewModel(teamTricode: teamTricode))
+    init(teamTricode: String, logoType: LogoType) {
+        _vm = StateObject(wrappedValue: TeamImageViewModel(teamTricode: teamTricode, logoType: logoType))
     }
     
     var body: some View {
@@ -34,12 +34,12 @@ struct TeamImageView: View {
 struct TeamImageView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TeamImageView(teamTricode: dev.team1.tricode)
+            TeamImageView(teamTricode: dev.team1.tricode, logoType: .primary)
                 .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
             
-            TeamImageView(teamTricode: dev.team2.tricode)
+            TeamImageView(teamTricode: dev.team1.tricode, logoType: .secondary)
                 .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)

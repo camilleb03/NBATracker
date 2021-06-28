@@ -75,7 +75,7 @@ struct TeamRecordView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            TeamImageView(teamTricode: team.triCode)
+            TeamImageView(teamTricode: team.triCode, logoType: .secondary)
                 .frame(width: 50, height: 50)
             Text("\(team.win) - \(team.loss)")
                 .foregroundColor(Color.theme.secondaryText)

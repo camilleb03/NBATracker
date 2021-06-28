@@ -112,7 +112,7 @@ extension ScoreboardDetailView {
                 
                 VStack {
                     HStack {
-                        TeamImageView(teamTricode: scoreboard.visitorTeam.triCode)
+                        TeamImageView(teamTricode: scoreboard.visitorTeam.triCode, logoType: .secondary)
                             .frame(width: 20, height: 20)
                         
                         Spacer()
@@ -122,7 +122,7 @@ extension ScoreboardDetailView {
                         
                         Spacer()
                         
-                        TeamImageView(teamTricode: scoreboard.homeTeam.triCode)
+                        TeamImageView(teamTricode: scoreboard.homeTeam.triCode, logoType: .secondary)
                             .frame(width: 20, height: 20)
                     }
                     .frame(maxWidth: .infinity)
