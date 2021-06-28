@@ -276,8 +276,8 @@ extension TeamGameStats: Decodable {
         }
         self.fga = fga
         
-        guard let fgp = Double(try totalsContainer.decode(String.self, forKey: .fga)) else {
-            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.TotalsKeys.fga], debugDescription: "Value for \"\(RootKeys.TotalsKeys.fga.rawValue)\" needs to be a valid Double"))
+        guard let fgp = Double(try totalsContainer.decode(String.self, forKey: .fgp)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.TotalsKeys.fgp], debugDescription: "Value for \"\(RootKeys.TotalsKeys.fgp.rawValue)\" needs to be a valid Double"))
         }
         self.fgp = fgp / 100
         
