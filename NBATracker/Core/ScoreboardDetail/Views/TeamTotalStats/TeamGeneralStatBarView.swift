@@ -1,5 +1,5 @@
 //
-//  TeamProgressBarStatView.swift
+//  TeamGeneralStatBarView.swift
 //  NBATracker
 //
 //  Created by Camille Bourbonnais on 2021-06-27.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TeamProgressBarStatView: View {
+struct TeamGeneralStatBarView: View {
     
     let stat: GameStatistic<(Int, Int)>
     
@@ -28,28 +28,30 @@ struct TeamProgressBarStatView: View {
             }
             .font(.subheadline)
             
-            ProgressBarView(value: .constant(calculatePercentage(with: stat.value.1, and: stat.value.0)))
+            ProgressBarView(value: .constant(calculatePercentage(with: Double(stat.value.1), and: Double(stat.value.0))))
                 .frame(height: 7)
         }
     }
     
-    private func calculatePercentage(with value1: Int, and value2: Int) -> Double {
-        let numerator = Double(value1)
-        let denominator = Double(value1 + value2)
-        let result = numerator / denominator
-        return result
+    private func calculatePercentage(with value1: Double, and value2: Double) -> Double {
+        let numerator = value1
+        let denominator = value1 + value2
+        if denominator.isZero {
+            return 0.5
+        }
+        return (numerator / denominator)
     }
 }
 
-struct TeamProgressBarStatView_Previews: PreviewProvider {
+struct TeamGeneralStatBarView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TeamProgressBarStatView(stat: dev.allTeamGeneralStats1.randomElement() ?? GameStatistic(title: "Points", value: (110, 98)))
+            TeamGeneralStatBarView(stat: dev.allTeamGeneralStats1.randomElement() ?? GameStatistic(title: "Points", value: (110, 98)))
                 .padding(4)
                 .preferredColorScheme(.light)
                 .previewLayout(.sizeThatFits)
             
-            TeamProgressBarStatView(stat: dev.allTeamGeneralStats1.randomElement() ?? GameStatistic(title: "Points", value: (110, 98)))
+            TeamGeneralStatBarView(stat: GameStatistic(title: "Points", value: (0, 0)))
                 .padding(4)
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)

@@ -18,48 +18,18 @@ struct TeamTotalStatsView: View {
             
         } else {
             ScrollView(showsIndicators: false) {
+                
                 ForEach(allTeamShootingStats) { stat in
-                    VStack(spacing: 1) {
-                        HStack {
-                            // Visitor
-                            HStack {
-                                Text("\(stat.value.visitor.made)/\(stat.value.visitor.attempted)")
-                                Text("(\(stat.value.visitor.percentage.convertDoubleToPercentString()))")
-                                    .foregroundColor(Color.theme.secondaryText)
-                            }
-                            
-                            Spacer()
-                            
-                            Text(stat.title)
-                            
-                            Spacer()
-                            // Home
-                            HStack {
-                                Text("(\(stat.value.home.percentage.convertDoubleToPercentString()))")
-                                    .foregroundColor(Color.theme.secondaryText)
-                                Text("\(stat.value.home.made)/\(stat.value.home.attempted)")
-                            }
-                        }
-                        .font(.subheadline)
-                        
-                        ProgressBarView(value: .constant(calculatePercentage(with: stat.value.visitor.percentage, and: stat.value.home.percentage)))
-                            .frame(height: 7)
-                    }
+                    TeamShootingStatBarView(stat: stat)
                     .padding(4)
                 }
+                
                 ForEach(allTeamGeneralStats) { stat in
-                    TeamProgressBarStatView(stat: stat)
-                        .padding(4)
+                    TeamGeneralStatBarView(stat: stat)
+                    .padding(4)
                 }
             }
         }
-    }
-    
-    private func calculatePercentage(with value1: Double, and value2: Double) -> Double {
-        let numerator = value1
-        let denominator = value1 + value2
-        let result = numerator / denominator
-        return result
     }
 }
 
