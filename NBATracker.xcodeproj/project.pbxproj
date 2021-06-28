@@ -33,6 +33,7 @@
 		919197DA2676FE2A006F6A7B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197D92676FE2A006F6A7B /* Player.swift */; };
 		919197DD2677021A006F6A7B /* PlayerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197DC2677021A006F6A7B /* PlayerDetails.swift */; };
 		919197E026770224006F6A7B /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919197DF26770224006F6A7B /* Team.swift */; };
+		9191B38C26897F8A00464522 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191B38B26897F8A00464522 /* Double.swift */; };
 		9198B179267857B500327C97 /* TeamImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198B178267857B500327C97 /* TeamImageViewModel.swift */; };
 		9198B17D267857C500327C97 /* TeamImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198B17C267857C500327C97 /* TeamImageView.swift */; };
 		9198B18026785A6C00327C97 /* TeamImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198B17F26785A6C00327C97 /* TeamImageService.swift */; };
@@ -86,6 +87,7 @@
 		919197D92676FE2A006F6A7B /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		919197DC2677021A006F6A7B /* PlayerDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetails.swift; sourceTree = "<group>"; };
 		919197DF26770224006F6A7B /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		9191B38B26897F8A00464522 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		9198B178267857B500327C97 /* TeamImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageViewModel.swift; sourceTree = "<group>"; };
 		9198B17C267857C500327C97 /* TeamImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageView.swift; sourceTree = "<group>"; };
 		9198B17F26785A6C00327C97 /* TeamImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageService.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				919197C72676CB37006F6A7B /* Color.swift */,
 				912D88DE2679326F00AA3CCF /* Date.swift */,
+				9191B38B26897F8A00464522 /* Double.swift */,
 				919197D02676CB6E006F6A7B /* PreviewProvider.swift */,
 				91F2C6FE267733330064E3C5 /* UIApplication.swift */,
 			);
@@ -497,6 +500,7 @@
 				9198B17D267857C500327C97 /* TeamImageView.swift in Sources */,
 				912D88E82679394100AA3CCF /* ScoreboardView.swift in Sources */,
 				912D88EB2679BBCD00AA3CCF /* ScoreboardRowView.swift in Sources */,
+				9191B38C26897F8A00464522 /* Double.swift in Sources */,
 				91F2C6EC26772CFC0064E3C5 /* PlayerImageView.swift in Sources */,
 				916C60DD2685261800B1CFA6 /* LaunchView.swift in Sources */,
 				919197DD2677021A006F6A7B /* PlayerDetails.swift in Sources */,
