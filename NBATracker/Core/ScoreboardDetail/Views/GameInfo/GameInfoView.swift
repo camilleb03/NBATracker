@@ -52,6 +52,11 @@ struct GameInfoView_Previews: PreviewProvider {
                 .preferredColorScheme(.light)
                 .previewLayout(.sizeThatFits)
             
+            GameInfoView(scoreboard: dev.scoreboardIsEndOfPeriod)
+                .padding()
+                .preferredColorScheme(.dark)
+                .previewLayout(.sizeThatFits)
+            
             GameInfoView(scoreboard: dev.scoreboardIsHalftime)
                 .padding()
                 .preferredColorScheme(.dark)

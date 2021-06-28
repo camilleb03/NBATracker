@@ -66,7 +66,7 @@ struct Scoreboard: Identifiable {
             case .isHalftime:
                 return "HALF"
             case .isEndOfPeriod:
-                return "END OF Q\(currentPeriod)"
+                return "Q\(currentPeriod) | END"
             case .isFinished:
                 return "FINAL"
             case .undefined:
