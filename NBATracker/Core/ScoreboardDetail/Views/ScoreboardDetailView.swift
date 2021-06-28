@@ -46,36 +46,7 @@ struct ScoreboardDetailView: View {
                 GameScoreTableView(scoreboard: scoreboard)
                     .padding(.horizontal)
                 
-                TabView {
-                    ZStack {
-                        Color(.systemRed)
-                            .clipShape(RoundedRectangle(cornerRadius: 10.0))
-                        
-                        Text("Team Stats")
-                    }
-                    
-                    ZStack {
-                        Color(.systemTeal)
-                            .clipShape(RoundedRectangle(cornerRadius: 10.0))
-                        Text("Team Leaders")
-                    }
-                    
-                    ZStack {
-                        Color(.systemPurple)
-                            .clipShape(RoundedRectangle(cornerRadius: 10.0))
-                        Text("Play-by-play")
-                    }
-                    
-                    ZStack {
-                        Color(.systemIndigo)
-                            .clipShape(RoundedRectangle(cornerRadius: 10.0))
-                        Text("Game Flow")
-                    }
-                }
-                
-                .padding()
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                dashboardStats
                 
                 Spacer()
             }
@@ -84,6 +55,16 @@ struct ScoreboardDetailView: View {
             Text("\(scoreboard.visitorTeam.triCode) @ \(scoreboard.homeTeam.triCode)")
         )
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(content: {
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                RefreshButton(isLoading: $vm.isLoading) {
+                    withAnimation(.linear(duration: 2.0)) {
+                        reloadBoxscoreData()
+                    }
+                }
+            }
+        })
     }
 }
 
@@ -123,4 +104,63 @@ struct ScoreboardDetailView_Previews: PreviewProvider {
 
 extension ScoreboardDetailView {
     
+    private var dashboardStats: some View {
+        TabView {
+            ZStack {
+                Color.theme.secondaryBackground
+                    .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                
+                VStack {
+                    HStack {
+                        TeamImageView(teamTricode: scoreboard.visitorTeam.triCode)
+                            .frame(width: 20, height: 20)
+                        
+                        Spacer()
+                        
+                        Text("Team Stats")
+                            .font(.subheadline)
+                        
+                        Spacer()
+                        
+                        TeamImageView(teamTricode: scoreboard.homeTeam.triCode)
+                            .frame(width: 20, height: 20)
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    Divider()
+                    
+                    TeamTotalStatsView(allTeamStats: $vm.allTeamStats)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+                .padding()
+            }
+            .padding()
+            
+            ZStack {
+                Color(.systemTeal)
+                    .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                Text("Team Leaders")
+            }
+            .padding()
+            
+            ZStack {
+                Color(.systemPurple)
+                    .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                Text("Play-by-play")
+            }
+            .padding()
+            
+            ZStack {
+                Color(.systemIndigo)
+                    .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                Text("Game Flow")
+            }
+            .padding()
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+    }
+    
+    private func reloadBoxscoreData() {
+        vm.reloadData()
+    }
 }
