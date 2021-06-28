@@ -129,7 +129,8 @@ extension ScoreboardDetailView {
                     
                     Divider()
                     
-                    TeamTotalStatsView(allTeamStats: $vm.allTeamStats)
+                    TeamTotalStatsView(allTeamGeneralStats: $vm.allTeamGeneralStats,
+                                       allTeamShootingStats: $vm.allTeamShootingStats)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 }
                 .padding()

@@ -12,7 +12,9 @@ class ScoreboardDetailViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
     @Published var scoreboard: Scoreboard
-    @Published var allTeamStats: [GameStatistic<(Int, Int)>] = []
+    @Published var allTeamGeneralStats: [GameStatistic<(Int, Int)>] = []
+    @Published var allTeamShootingStats: [GameStatistic<(home: (made: Int, attempted: Int, percentage: Double),
+                                                         visitor: (made: Int, attempted: Int, percentage: Double))>] = []
     
     private let boxscoreDataService: BoxscoreDataService
     private var cancellables = Set<AnyCancellable>()
@@ -27,16 +29,23 @@ class ScoreboardDetailViewModel: ObservableObject {
         boxscoreDataService.$boxscore
             .map(mapBoxscoreToStatistics)
             .sink(receiveValue: { [weak self] (returnedTeamStatistics) in
-                self?.allTeamStats = returnedTeamStatistics
-                self?.isLoading = false
+                guard let self = self else { return }
+                self.allTeamGeneralStats = returnedTeamStatistics.generalStats
+                self.allTeamShootingStats = returnedTeamStatistics.shootingStats
+                self.isLoading = false
             })
             .store(in: &cancellables)
     }
     
-    private func mapBoxscoreToStatistics(boxscore: Boxscore?) -> [GameStatistic<(Int, Int)>] {
+    private func mapBoxscoreToStatistics(boxscore: Boxscore?) -> (generalStats: [GameStatistic<(Int, Int)>], shootingStats: [GameStatistic<(home: (made: Int, attempted: Int, percentage: Double), visitor: (made: Int, attempted: Int, percentage: Double))>]) {
+        
+        var teamGeneralStats: [GameStatistic<(Int, Int)>] = []
+        var teamShootingStats: [GameStatistic<(home: (made: Int, attempted: Int, percentage: Double),
+                                               visitor: (made: Int, attempted: Int, percentage: Double))>] = []
         
         if let boxscore = boxscore {
             
+            // MARK: General Stats
             let assistsStat = GameStatistic(title: "Assists", value: (boxscore.homeTeam.assists, boxscore.visitorTeam.assists))
             
             let totalReboundsStat = GameStatistic(title: "Total Rebounds", value: (boxscore.homeTeam.totReb, boxscore.visitorTeam.totReb))
@@ -51,9 +60,9 @@ class ScoreboardDetailViewModel: ObservableObject {
             
             let pointsInPaintStat = GameStatistic(title: "Points in the Paint", value: (boxscore.homeTeam.pointsInPaint, boxscore.visitorTeam.pointsInPaint))
             
-            let secondChancePointsStat = GameStatistic(title: "Second chance Points", value: (boxscore.homeTeam.secondChancePoints, boxscore.visitorTeam.secondChancePoints))
+            let secondChancePointsStat = GameStatistic(title: "Second Chance Points", value: (boxscore.homeTeam.secondChancePoints, boxscore.visitorTeam.secondChancePoints))
             
-            let pointsOffTurnoversStat = GameStatistic(title: "Points off Turnovers", value: (boxscore.homeTeam.pointsOffTurnovers, boxscore.visitorTeam.pointsOffTurnovers))
+            let pointsOffTurnoversStat = GameStatistic(title: "Points Off Turnovers", value: (boxscore.homeTeam.pointsOffTurnovers, boxscore.visitorTeam.pointsOffTurnovers))
             
             let turnoversStat = GameStatistic(title: "Turnovers", value: (boxscore.homeTeam.turnovers, boxscore.visitorTeam.turnovers))
             
@@ -61,7 +70,7 @@ class ScoreboardDetailViewModel: ObservableObject {
             
             let teamFoulsStat = GameStatistic(title: "Team Fouls", value: (boxscore.homeTeam.teamFouls, boxscore.visitorTeam.teamFouls))
             
-            let allTeamStats = [
+            teamGeneralStats.append(contentsOf: [
                 assistsStat,
                 totalReboundsStat,
                 offReboundsStat,
@@ -74,11 +83,29 @@ class ScoreboardDetailViewModel: ObservableObject {
                 turnoversStat,
                 personalFoulsStat,
                 teamFoulsStat,
-            ]
-            return allTeamStats
-        } else {
-            return []
+            ])
+            
+            // MARK: Shooting stats
+            let fieldGoalsHome = (made: boxscore.homeTeam.fgm, attempted: boxscore.homeTeam.fga, percentage: boxscore.homeTeam.fgp)
+            let fieldGoalsVisitor = (made: boxscore.visitorTeam.fgm, attempted: boxscore.visitorTeam.fga, percentage: boxscore.visitorTeam.fgp)
+            let fieldGoalsStat = GameStatistic(title: "Field Goals", value: (home: fieldGoalsHome, visitor: fieldGoalsVisitor))
+            
+            let threePointsHome = (made: boxscore.homeTeam.tpm, attempted: boxscore.homeTeam.tpa, percentage: boxscore.homeTeam.tpp)
+            let threePointsVisitor = (made: boxscore.visitorTeam.tpm, attempted: boxscore.visitorTeam.tpa, percentage: boxscore.visitorTeam.tpp)
+            let threePointsStat = GameStatistic(title: "Three Points", value: (home: threePointsHome, visitor: threePointsVisitor))
+            
+            let freeThrowsHome = (made: boxscore.homeTeam.ftm, attempted: boxscore.homeTeam.fta, percentage: boxscore.homeTeam.ftp)
+            let freeThrowsVisitor = (made: boxscore.visitorTeam.ftm, attempted: boxscore.visitorTeam.fta, percentage: boxscore.visitorTeam.ftp)
+            let freeThrowsStat = GameStatistic(title: "Free Throws", value: (home: freeThrowsHome, visitor: freeThrowsVisitor))
+            
+            teamShootingStats.append(contentsOf: [
+                fieldGoalsStat,
+                threePointsStat,
+                freeThrowsStat,
+            ])
+            print(teamShootingStats)
         }
+        return (generalStats: teamGeneralStats, shootingStats: teamShootingStats)
     }
     
     func reloadData() {

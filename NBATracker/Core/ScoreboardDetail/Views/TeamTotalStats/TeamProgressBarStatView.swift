@@ -14,7 +14,8 @@ struct TeamProgressBarStatView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("\(stat.value.0)")
+                // Visitor
+                Text("\(stat.value.1)")
                 
                 Spacer()
                 
@@ -22,11 +23,12 @@ struct TeamProgressBarStatView: View {
                 
                 Spacer()
                 
-                Text("\(stat.value.1)")
+                // Home
+                Text("\(stat.value.0)")
             }
             .font(.subheadline)
             
-            ProgressBarView(value: .constant(calculatePercentage(with: stat.value.0, and: stat.value.1)))
+            ProgressBarView(value: .constant(calculatePercentage(with: stat.value.1, and: stat.value.0)))
                 .frame(height: 7)
         }
     }
@@ -42,12 +44,12 @@ struct TeamProgressBarStatView: View {
 struct TeamProgressBarStatView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TeamProgressBarStatView(stat: dev.allTeamStats1.randomElement() ?? GameStatistic(title: "Points", value: (110, 98)))
+            TeamProgressBarStatView(stat: dev.allTeamGeneralStats1.randomElement() ?? GameStatistic(title: "Points", value: (110, 98)))
                 .padding(4)
                 .preferredColorScheme(.light)
                 .previewLayout(.sizeThatFits)
             
-            TeamProgressBarStatView(stat: dev.allTeamStats1.randomElement() ?? GameStatistic(title: "Points", value: (110, 98)))
+            TeamProgressBarStatView(stat: dev.allTeamGeneralStats1.randomElement() ?? GameStatistic(title: "Points", value: (110, 98)))
                 .padding(4)
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
