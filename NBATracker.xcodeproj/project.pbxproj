@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9107A310268AA8220070D6E7 /* TeamLeadersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107A30F268AA8220070D6E7 /* TeamLeadersView.swift */; };
 		91189C962687C5CA006A88B6 /* GameScoreTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91189C952687C5C9006A88B6 /* GameScoreTableView.swift */; };
 		91189C982687CDE5006A88B6 /* GameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91189C972687CDE5006A88B6 /* GameInfoView.swift */; };
 		91273B07268992C800A62B41 /* TeamShootingStatBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91273B06268992C800A62B41 /* TeamShootingStatBarView.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9107A30F268AA8220070D6E7 /* TeamLeadersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamLeadersView.swift; sourceTree = "<group>"; };
 		91189C952687C5C9006A88B6 /* GameScoreTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScoreTableView.swift; sourceTree = "<group>"; };
 		91189C972687CDE5006A88B6 /* GameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoView.swift; sourceTree = "<group>"; };
 		91273B06268992C800A62B41 /* TeamShootingStatBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamShootingStatBarView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9107A30E268A89580070D6E7 /* TeamLeadersStat */ = {
+			isa = PBXGroup;
+			children = (
+				9107A30F268AA8220070D6E7 /* TeamLeadersView.swift */,
+			);
+			path = TeamLeadersStat;
+			sourceTree = "<group>";
+		};
 		91189C992687CF87006A88B6 /* GameInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +348,7 @@
 				91189C992687CF87006A88B6 /* GameInfo */,
 				91189C9A2687CF9D006A88B6 /* GameScoreTable */,
 				91D56FBD2688047C007FA766 /* TeamTotalStats */,
+				9107A30E268A89580070D6E7 /* TeamLeadersStat */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -487,6 +498,7 @@
 				91F2C6FF267733330064E3C5 /* UIApplication.swift in Sources */,
 				919197B32676CADF006F6A7B /* NBATrackerApp.swift in Sources */,
 				9198B18026785A6C00327C97 /* TeamImageService.swift in Sources */,
+				9107A310268AA8220070D6E7 /* TeamLeadersView.swift in Sources */,
 				912D88E22679335C00AA3CCF /* ScoreboardDataService.swift in Sources */,
 				91F2C6F026772D370064E3C5 /* PlayerImageViewModel.swift in Sources */,
 				912D88DA267930E100AA3CCF /* Scoreboard.swift in Sources */,

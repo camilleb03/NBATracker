@@ -138,9 +138,32 @@ extension ScoreboardDetailView {
             .padding()
             
             ZStack {
-                Color(.systemTeal)
+                Color.theme.secondaryBackground
                     .clipShape(RoundedRectangle(cornerRadius: 10.0))
-                Text("Team Leaders")
+                
+                VStack {
+                    HStack {
+                        TeamImageView(teamTricode: scoreboard.visitorTeam.triCode, logoType: .secondary)
+                            .frame(width: 20, height: 20)
+                        
+                        Spacer()
+                        
+                        Text("Team Leaders")
+                            .font(.subheadline)
+                        
+                        Spacer()
+                        
+                        TeamImageView(teamTricode: scoreboard.homeTeam.triCode, logoType: .secondary)
+                            .frame(width: 20, height: 20)
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    Divider()
+                    
+                    TeamLeadersView(allTeamLeadersStats: $vm.allTeamLeadersStats)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+                .padding()
             }
             .padding()
             

@@ -194,4 +194,70 @@ class DeveloperPreview {
                 visitor: (made: 12, attempted: 21, percentage: 0.5710000000000001)
             ))
     ]
+    
+    let allTeamLeadersStats1 = [
+        GameStatistic<(home: StatLeader, visitor: StatLeader)>(
+            title: "Points",
+            value: (
+                home: StatLeader(
+                    number: 35,
+                    player: Optional(BasePlayer(personId: "1629027", firstName: "Trae", lastName: "Young"))),
+                visitor: StatLeader(
+                    number: 38,
+                    player: Optional(BasePlayer(personId: "203114", firstName: "Khris", lastName: "Middleton")))
+            )),
+        GameStatistic<(home: StatLeader, visitor: StatLeader)>(
+            title: "Assists",
+            value: (
+                home: StatLeader(
+                    number: 7,
+                    player: Optional(BasePlayer(personId: "1628989", firstName: "Kevin", lastName: "Huerter"))),
+                visitor: StatLeader(
+                    number: 12,
+                    player: Optional(BasePlayer(personId: "201950", firstName: "Jrue", lastName: "Holiday")))
+            )),
+        GameStatistic<(home: StatLeader, visitor: StatLeader)>(
+            title: "Rebounds",
+            value: (
+                home: StatLeader(
+                    number: 11,
+                    player: Optional(BasePlayer(personId: "203991", firstName: "Clint", lastName: "Capela"))),
+                visitor: StatLeader(
+                    number: 11,
+                    player: Optional(BasePlayer(personId: "203507", firstName: "Giannis", lastName: "Antetokounmpo")))
+            ))
+    ]
+    
+    let allTeamLeadersStatsEmpty = [
+        GameStatistic<(home: StatLeader, visitor: StatLeader)>(
+            title: "Points",
+            value: (
+                home: StatLeader(
+                    number: 0,
+                    player: nil),
+                visitor: StatLeader(
+                    number: 0,
+                    player: nil)
+            )),
+        GameStatistic<(home: StatLeader, visitor: StatLeader)>(
+            title: "Assists",
+            value: (
+                home: StatLeader(
+                    number: 0,
+                    player: nil),
+                visitor: StatLeader(
+                    number: 0,
+                    player: nil)
+            )),
+        GameStatistic<(home: StatLeader, visitor: StatLeader)>(
+            title: "Rebounds",
+            value: (
+                home: StatLeader(
+                    number: 0,
+                    player: nil),
+                visitor: StatLeader(
+                    number: 0,
+                    player: nil)
+            ))
+    ]
 }
