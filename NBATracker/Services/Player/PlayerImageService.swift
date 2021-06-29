@@ -14,14 +14,14 @@ class PlayerImageService {
     @Published var image: UIImage? = nil
     
     private var imageSubscription: AnyCancellable?
-    private let player: Player
+    private let playerID: String
     private let fileManager = LocalFileManager.instance
     private let folderName = "player_images"
     private let imageName: String
     
-    init(player: Player) {
-        self.player = player
-        self.imageName = player.id
+    init(playerID: String) {
+        self.playerID = playerID
+        self.imageName = playerID
         getPlayerImage()
     }
     
@@ -36,7 +36,7 @@ class PlayerImageService {
     }
     
     private func downloadPlayerImage() {
-        let url = Endpoint.headshot(for: player.id).headshotURL
+        let url = Endpoint.headshot(for: playerID).headshotURL
         imageSubscription = NetworkingManager.download(url: url)
             .tryMap({ (data) -> UIImage? in
                 return UIImage(data: data)

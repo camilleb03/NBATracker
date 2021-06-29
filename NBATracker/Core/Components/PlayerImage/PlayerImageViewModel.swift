@@ -14,13 +14,13 @@ class PlayerImageViewModel: ObservableObject {
     @Published var image: UIImage? = nil
     @Published var isLoading: Bool = false
     
-    private let player: Player
+    private let playerID: String
     private let dataService: PlayerImageService
     private var cancellables = Set<AnyCancellable>()
     
-    init(player: Player) {
-        self.player = player
-        self.dataService = PlayerImageService(player: player)
+    init(playerID: String) {
+        self.playerID = playerID
+        self.dataService = PlayerImageService(playerID: playerID)
         self.addSubscribers()
     }
     

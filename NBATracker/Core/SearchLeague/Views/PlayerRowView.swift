@@ -13,7 +13,7 @@ struct PlayerRowView: View {
     
     var body: some View {
         HStack {
-            PlayerImageView(player: player)
+            PlayerImageView(playerID: player.id)
                 .frame(width: 75, height: 75)
                 .padding(4)
                 .background(

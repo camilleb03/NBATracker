@@ -11,8 +11,8 @@ struct PlayerImageView: View {
     
     @StateObject private var vm: PlayerImageViewModel
     
-    init(player: Player) {
-        _vm = StateObject(wrappedValue: PlayerImageViewModel(player: player))
+    init(playerID: String) {
+        _vm = StateObject(wrappedValue: PlayerImageViewModel(playerID: playerID))
     }
     
     var body: some View {
@@ -34,12 +34,12 @@ struct PlayerImageView: View {
 struct PlayerImageView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PlayerImageView(player: dev.activePlayer1)
+            PlayerImageView(playerID: dev.activePlayer1.id)
                 .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
             
-            PlayerImageView(player: dev.activePlayer2)
+            PlayerImageView(playerID: dev.activePlayer2.id)
                 .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
