@@ -81,14 +81,14 @@ struct ScoreboardDetailView_Previews: PreviewProvider {
             TabView {
                 NavigationView {
                     ScoreboardDetailView(scoreboard: dev.scoreboardIsHalftime)
-                        .preferredColorScheme(.light)
+                        .preferredColorScheme(.dark)
                 }
             }
             
             TabView {
                 NavigationView {
                     ScoreboardDetailView(scoreboard: dev.scoreboardIsPlaying)
-                        .preferredColorScheme(.dark)
+                        .preferredColorScheme(.light)
                 }
             }
             

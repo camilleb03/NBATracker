@@ -223,7 +223,7 @@ class DeveloperPreview {
                     number: 11,
                     player: Optional(BasePlayer(personId: "203991", firstName: "Clint", lastName: "Capela"))),
                 visitor: StatLeader(
-                    number: 11,
+                    number: 8,
                     player: Optional(BasePlayer(personId: "203507", firstName: "Giannis", lastName: "Antetokounmpo")))
             ))
     ]

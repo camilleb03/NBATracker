@@ -173,6 +173,10 @@ extension StatLeader: Decodable {
 
 struct BasePlayer: Decodable {
     let personId, firstName, lastName: String
+    
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
 }
 
 // MARK: - Team Game Stats

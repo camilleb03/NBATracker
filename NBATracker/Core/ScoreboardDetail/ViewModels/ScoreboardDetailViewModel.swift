@@ -123,7 +123,6 @@ class ScoreboardDetailViewModel: ObservableObject {
                 assistsLeaders,
                 reboundsLeaders,
             ])
-            print(teamLeadersStats)
         }
         return (generalStats: teamGeneralStats, shootingStats: teamShootingStats, leadersStats: teamLeadersStats)
     }
