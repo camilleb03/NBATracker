@@ -19,6 +19,7 @@ struct NBATrackerApp: App {
                     NavigationView {
                         ScoreboardView()
                     }
+                    .navigationViewStyle(StackNavigationViewStyle())
                     .tabItem {
                         Label("Games", systemImage: "sportscourt")
                             .foregroundColor(Color.theme.accent)

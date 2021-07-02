@@ -114,18 +114,21 @@ import Foundation
  */
 
 struct BoxscoreRawResponse {
+    let scoreboard: Scoreboard
     let boxscore: Boxscore?
 }
 
 extension BoxscoreRawResponse: Decodable {
     
     private enum CodingKeys: String, CodingKey {
+        case scoreboard = "basicGameData"
         case boxscore = "stats"
     }
     
     init(from decoder: Decoder) throws {
         // Root level
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.scoreboard = try container.decode(Scoreboard.self, forKey: .scoreboard)
         self.boxscore = try container.decodeIfPresent(Boxscore.self, forKey: .boxscore)
     }
 }

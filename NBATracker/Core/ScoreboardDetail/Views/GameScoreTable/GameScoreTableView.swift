@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameScoreTableView: View {
     
-    let scoreboard: Scoreboard
+    @Binding var scoreboard: Scoreboard
     
     var body: some View {
         HStack(spacing: 0) {
@@ -44,22 +44,27 @@ struct GameScoreTableView: View {
 struct GameScoreTableView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            GameScoreTableView(scoreboard: dev.scoreboardNotStarted)
+            GameScoreTableView(scoreboard: .constant(dev.scoreboardNotStarted))
                 .padding()
                 .preferredColorScheme(.light)
                 .previewLayout(.sizeThatFits)
             
-            GameScoreTableView(scoreboard: dev.scoreboardIsHalftime)
+            GameScoreTableView(scoreboard: .constant(dev.scoreboardIsEndOfPeriod))
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
             
-            GameScoreTableView(scoreboard: dev.scoreboardIsPlaying)
+            GameScoreTableView(scoreboard: .constant(dev.scoreboardIsHalftime))
+                .padding()
+                .preferredColorScheme(.dark)
+                .previewLayout(.sizeThatFits)
+            
+            GameScoreTableView(scoreboard: .constant(dev.scoreboardIsPlaying))
                 .padding()
                 .preferredColorScheme(.light)
                 .previewLayout(.sizeThatFits)
             
-            GameScoreTableView(scoreboard: dev.scoreboardIsFinished)
+            GameScoreTableView(scoreboard: .constant(dev.scoreboardIsFinished))
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)

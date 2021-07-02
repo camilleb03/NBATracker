@@ -24,12 +24,10 @@ struct ScoreboardDetailLoadingView: View {
 struct ScoreboardDetailView: View {
     
     @StateObject private var vm: ScoreboardDetailViewModel
-    
-    let scoreboard: Scoreboard
-    
+        
     init(scoreboard: Scoreboard) {
+        print("ScoreboardDetailView created !")
         _vm = StateObject(wrappedValue: ScoreboardDetailViewModel(scoreboard: scoreboard))
-        self.scoreboard = scoreboard
     }
     
     var body: some View {
@@ -40,10 +38,10 @@ struct ScoreboardDetailView: View {
             
             // content
             VStack(spacing: 0) {
-                GameInfoView(scoreboard: scoreboard)
+                GameInfoView(scoreboard: $vm.scoreboard)
                     .padding()
                 
-                GameScoreTableView(scoreboard: scoreboard)
+                GameScoreTableView(scoreboard: $vm.scoreboard)
                     .padding(.horizontal)
                 
                 dashboardStats
@@ -52,7 +50,7 @@ struct ScoreboardDetailView: View {
             }
         }
         .navigationTitle(
-            Text("\(scoreboard.visitorTeam.triCode) @ \(scoreboard.homeTeam.triCode)")
+            Text("\(vm.scoreboard.visitorTeam.triCode) @ \(vm.scoreboard.homeTeam.triCode)")
         )
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(content: {
@@ -112,7 +110,7 @@ extension ScoreboardDetailView {
                 
                 VStack {
                     HStack {
-                        TeamImageView(teamTricode: scoreboard.visitorTeam.triCode, logoType: .secondary)
+                        TeamImageView(teamTricode: vm.scoreboard.visitorTeam.triCode, logoType: .secondary)
                             .frame(width: 20, height: 20)
                         
                         Spacer()
@@ -122,7 +120,7 @@ extension ScoreboardDetailView {
                         
                         Spacer()
                         
-                        TeamImageView(teamTricode: scoreboard.homeTeam.triCode, logoType: .secondary)
+                        TeamImageView(teamTricode: vm.scoreboard.homeTeam.triCode, logoType: .secondary)
                             .frame(width: 20, height: 20)
                     }
                     .frame(maxWidth: .infinity)
@@ -143,7 +141,7 @@ extension ScoreboardDetailView {
                 
                 VStack {
                     HStack {
-                        TeamImageView(teamTricode: scoreboard.visitorTeam.triCode, logoType: .secondary)
+                        TeamImageView(teamTricode: vm.scoreboard.visitorTeam.triCode, logoType: .secondary)
                             .frame(width: 20, height: 20)
                         
                         Spacer()
@@ -153,7 +151,7 @@ extension ScoreboardDetailView {
                         
                         Spacer()
                         
-                        TeamImageView(teamTricode: scoreboard.homeTeam.triCode, logoType: .secondary)
+                        TeamImageView(teamTricode: vm.scoreboard.homeTeam.triCode, logoType: .secondary)
                             .frame(width: 20, height: 20)
                     }
                     .frame(maxWidth: .infinity)

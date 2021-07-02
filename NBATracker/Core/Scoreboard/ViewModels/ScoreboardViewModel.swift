@@ -35,13 +35,13 @@ class ScoreboardViewModel: ObservableObject {
         scoreboardDataService.$allScoreboards
             .sink { [weak self] (returnedScoreboards) in
                 self?.allScoreboards = returnedScoreboards
-//                self?.allScoreboards.append(contentsOf: [
-//                    DeveloperPreview.instance.scoreboardNotStarted,
-//                    DeveloperPreview.instance.scoreboardIsEndOfPeriod,
-//                    DeveloperPreview.instance.scoreboardIsPlaying,
-//                    DeveloperPreview.instance.scoreboardIsHalftime,
-//                    DeveloperPreview.instance.scoreboardIsFinished,
-//                ])
+                self?.allScoreboards.append(contentsOf: [
+                    DeveloperPreview.instance.scoreboardNotStarted,
+                    DeveloperPreview.instance.scoreboardIsEndOfPeriod,
+                    DeveloperPreview.instance.scoreboardIsPlaying,
+                    DeveloperPreview.instance.scoreboardIsHalftime,
+                    DeveloperPreview.instance.scoreboardIsFinished,
+                ])
                 self?.isLoading = false
             }
             .store(in: &cancellables)

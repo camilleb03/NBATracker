@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameInfoView: View {
     
-    let scoreboard: Scoreboard
+    @Binding var scoreboard: Scoreboard
     
     var body: some View {
         VStack {
@@ -47,27 +47,27 @@ struct GameInfoView: View {
 struct GameInfoView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            GameInfoView(scoreboard: dev.scoreboardNotStarted)
+            GameInfoView(scoreboard: .constant(dev.scoreboardNotStarted))
                 .padding()
                 .preferredColorScheme(.light)
                 .previewLayout(.sizeThatFits)
             
-            GameInfoView(scoreboard: dev.scoreboardIsEndOfPeriod)
+            GameInfoView(scoreboard: .constant(dev.scoreboardIsEndOfPeriod))
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
             
-            GameInfoView(scoreboard: dev.scoreboardIsHalftime)
+            GameInfoView(scoreboard: .constant(dev.scoreboardIsHalftime))
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
             
-            GameInfoView(scoreboard: dev.scoreboardIsPlaying)
+            GameInfoView(scoreboard: .constant(dev.scoreboardIsPlaying))
                 .padding()
                 .preferredColorScheme(.light)
                 .previewLayout(.sizeThatFits)
             
-            GameInfoView(scoreboard: dev.scoreboardIsFinished)
+            GameInfoView(scoreboard: .constant(dev.scoreboardIsFinished))
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)

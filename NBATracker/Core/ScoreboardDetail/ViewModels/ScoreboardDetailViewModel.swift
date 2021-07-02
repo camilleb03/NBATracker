@@ -37,6 +37,14 @@ class ScoreboardDetailViewModel: ObservableObject {
                 self.isLoading = false
             })
             .store(in: &cancellables)
+        
+        boxscoreDataService.$scoreboard
+            .sink(receiveValue: { [weak self] (returnedScoreboard) in
+                guard let self = self else { return }
+                self.scoreboard = returnedScoreboard ?? self.scoreboard
+                self.isLoading = false
+            })
+            .store(in: &cancellables)
     }
     
     private func mapBoxscoreToStatistics(boxscore: Boxscore?) -> (generalStats: [GameStatistic<(Int, Int)>],

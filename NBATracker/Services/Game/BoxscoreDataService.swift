@@ -14,6 +14,7 @@ class BoxscoreDataService {
     let gameDate: Date
     
     @Published var boxscore: Boxscore? = nil
+    @Published var scoreboard: Scoreboard? = nil
     private var boxscoreSubscription: AnyCancellable?
     
     init(gameDate: Date, gameId: String) {
@@ -30,6 +31,7 @@ class BoxscoreDataService {
             .decode(type: BoxscoreRawResponse.self, decoder: JSONDecoder())
             .mapError(NetworkingManager.handleMapError)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] (returnedBoxscoreRawResponse) in
+                self?.scoreboard = returnedBoxscoreRawResponse.scoreboard
                 self?.boxscore = returnedBoxscoreRawResponse.boxscore
                 self?.boxscoreSubscription?.cancel()
             })
