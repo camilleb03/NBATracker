@@ -144,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				91189C972687CDE5006A88B6 /* GameInfoView.swift */,
+				91189C9A2687CF9D006A88B6 /* GameScoreTable */,
 			);
 			path = GameInfo;
 			sourceTree = "<group>";
@@ -351,7 +352,6 @@
 			children = (
 				91DE18782680F64100AB091D /* ScoreboardDetailView.swift */,
 				91189C992687CF87006A88B6 /* GameInfo */,
-				91189C9A2687CF9D006A88B6 /* GameScoreTable */,
 				91D56FBD2688047C007FA766 /* TeamTotalStats */,
 				9107A30E268A89580070D6E7 /* TeamLeadersStat */,
 			);
