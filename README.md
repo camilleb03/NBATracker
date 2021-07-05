@@ -24,16 +24,9 @@
 <hr>
 
 ## Project Videos
-<table>
-  <tr>
-    <td>Scoreboards View</td>
-     <td>Search View</td>
-  </tr>
-  <tr>
-    <td><img src="https://user-images.githubusercontent.com/43909779/124505332-3ab9fe00-dd97-11eb-97a0-d65ecffb5b54.gif" width=225 height=500></td>
-    <td><img src="https://user-images.githubusercontent.com/43909779/124505893-815c2800-dd98-11eb-8e14-29afc2d4ea15.gif" width=225 height=500></td>
-  </tr>
- </table>
+Scoreboards View             |  Search View
+:-------------------------:|:-------------------------:
+![NBATracker_Dark_Scoreboards](https://user-images.githubusercontent.com/43909779/124505332-3ab9fe00-dd97-11eb-97a0-d65ecffb5b54.gif)  |  ![NBATracker_Light_Search](https://user-images.githubusercontent.com/43909779/124505893-815c2800-dd98-11eb-8e14-29afc2d4ea15.gif)
 
 <hr>
 
