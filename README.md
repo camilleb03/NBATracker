@@ -51,7 +51,7 @@ A few of the things you can do with NBATracker:
 
 ## TODO list
 
-List of features coming :
+List of upcoming features:
 - Player Profile
   - Display player's latest headshot
   - Display personal info (name, birthday, attended collegue, draft info, current team)
