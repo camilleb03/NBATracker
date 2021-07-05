@@ -90,6 +90,7 @@ extension ScoreboardView {
     
     private var gameDatePicker: some View {
         DatePicker("", selection: $vm.gameDate, displayedComponents: .date)
+            .labelsHidden()
     }
     
     private func refreshScoreboardData() {

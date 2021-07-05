@@ -164,20 +164,6 @@ extension ScoreboardDetailView {
                 .padding()
             }
             .padding()
-            
-            ZStack {
-                Color(.systemPurple)
-                    .clipShape(RoundedRectangle(cornerRadius: 10.0))
-                Text("Play-by-play")
-            }
-            .padding()
-            
-            ZStack {
-                Color(.systemIndigo)
-                    .clipShape(RoundedRectangle(cornerRadius: 10.0))
-                Text("Game Flow")
-            }
-            .padding()
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
     }

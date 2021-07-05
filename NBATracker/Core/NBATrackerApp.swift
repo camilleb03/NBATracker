@@ -18,7 +18,7 @@ struct NBATrackerApp: App {
             ZStack {
                 TabView(selection: $selection) {
                     
-                    Text("League Standings")
+                    Text("League Standings \n Coming soon...")
                     .tabItem {
                         Label("Standings", systemImage: "list.number")
                             .foregroundColor(Color.theme.accent)
