@@ -13,6 +13,7 @@ struct ScoreboardView: View {
     
     @State private var selectedScoreboard: Scoreboard? = nil
     @State private var showScoreboardDetailView: Bool = false
+    @State private var showGameDatePicker: Bool = false
     
     var body: some View {
         ZStack {
@@ -28,7 +29,7 @@ struct ScoreboardView: View {
                 } else {
                     Spacer()
                     
-                    Text("No games found for \n \(vm.gameDate.convertDateToLocalDateMediumString())")
+                    Text("No games found")
                         .font(.callout)
                         .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
@@ -38,13 +39,20 @@ struct ScoreboardView: View {
                 
                 Spacer(minLength: 0)
             }
+            .sheet(isPresented: $showGameDatePicker,
+                   content: {
+                    CustomDatePicker(gameDate: $vm.gameDate)
+                   })
         }
-        .navigationTitle("Games")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Games for \(vm.gameDate.convertDateToLocalDateMediumString())")
         .toolbar(content: {
             
             ToolbarItem(placement: .navigationBarLeading) {
-                gameDatePicker
+                Button(action: {
+                    showGameDatePicker.toggle()
+                }, label: {
+                    Image(systemName: "calendar")
+                })
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -56,7 +64,6 @@ struct ScoreboardView: View {
             }
         })
         .onAppear() {
-            print("Scoreboards appeared !")
             refreshScoreboardData()
         }
         .background(
@@ -87,11 +94,6 @@ struct ScoreboardView_Previews: PreviewProvider {
 }
 
 extension ScoreboardView {
-    
-    private var gameDatePicker: some View {
-        DatePicker("", selection: $vm.gameDate, displayedComponents: .date)
-            .labelsHidden()
-    }
     
     private func refreshScoreboardData() {
         vm.reloadData(for: vm.gameDate)

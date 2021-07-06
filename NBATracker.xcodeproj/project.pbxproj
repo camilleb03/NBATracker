@@ -13,6 +13,7 @@
 		91189C962687C5CA006A88B6 /* GameScoreTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91189C952687C5C9006A88B6 /* GameScoreTableView.swift */; };
 		91189C982687CDE5006A88B6 /* GameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91189C972687CDE5006A88B6 /* GameInfoView.swift */; };
 		91273B07268992C800A62B41 /* TeamShootingStatBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91273B06268992C800A62B41 /* TeamShootingStatBarView.swift */; };
+		912A51732693E1750011586A /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912A51722693E1750011586A /* CustomDatePicker.swift */; };
 		912D88D226791C6A00AA3CCF /* TeamRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D88D126791C6A00AA3CCF /* TeamRowView.swift */; };
 		912D88DA267930E100AA3CCF /* Scoreboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D88D9267930E100AA3CCF /* Scoreboard.swift */; };
 		912D88DF2679326F00AA3CCF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D88DE2679326F00AA3CCF /* Date.swift */; };
@@ -69,6 +70,7 @@
 		91189C952687C5C9006A88B6 /* GameScoreTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScoreTableView.swift; sourceTree = "<group>"; };
 		91189C972687CDE5006A88B6 /* GameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoView.swift; sourceTree = "<group>"; };
 		91273B06268992C800A62B41 /* TeamShootingStatBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamShootingStatBarView.swift; sourceTree = "<group>"; };
+		912A51722693E1750011586A /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		912D88D126791C6A00AA3CCF /* TeamRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRowView.swift; sourceTree = "<group>"; };
 		912D88D9267930E100AA3CCF /* Scoreboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scoreboard.swift; sourceTree = "<group>"; };
 		912D88DE2679326F00AA3CCF /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				912D88E72679394100AA3CCF /* ScoreboardView.swift */,
 				912D88EA2679BBCD00AA3CCF /* ScoreboardRowView.swift */,
+				912A51722693E1750011586A /* CustomDatePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				9185759E2689072700896AE8 /* TeamGeneralStatBarView.swift in Sources */,
 				91F2C6F626772FBA0064E3C5 /* SearchLeagueView.swift in Sources */,
 				91189C962687C5CA006A88B6 /* GameScoreTableView.swift in Sources */,
+				912A51732693E1750011586A /* CustomDatePicker.swift in Sources */,
 				91F2C6F9267730010064E3C5 /* SearchLeagueViewModel.swift in Sources */,
 				91DE187E2680FC0B00AB091D /* GameStatistic.swift in Sources */,
 				91F2C6FC2677310E0064E3C5 /* SearchBarView.swift in Sources */,
