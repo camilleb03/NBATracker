@@ -12,23 +12,24 @@ class PlayerDetailDataService {
     
     @Published var playerDetails: PlayerDetail? = nil
     
-    var playerDetailSubscription: AnyCancellable?
-    let player: Player
+    private var playerDetailSubscription: AnyCancellable?
+    let playerID: String
     
-    init(player: Player) {
-        self.player = player
+    init(playerID: String) {
+        self.playerID = playerID
         getPlayerDetails()
     }
     
     func getPlayerDetails() {
         
-        let url = Endpoint.playerProfile(for: "2020", by: player.id).NBAv1URL
+        let url = Endpoint.playerProfile(for: "2020", by: playerID).NBAv1URL
         
         playerDetailSubscription =
             NetworkingManager.download(url: url)
-            .decode(type: PlayerDetail.self, decoder: JSONDecoder())
-            .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] (returnedPlayerDetails) in
-                self?.playerDetails = returnedPlayerDetails
+            .decode(type: PlayerDetailRawResponse.self, decoder: JSONDecoder())
+            .mapError(NetworkingManager.handleMapError)
+            .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] (returnedPlayerDetailsRawResponse) in
+                self?.playerDetails = returnedPlayerDetailsRawResponse.playerDetail
                 self?.playerDetailSubscription?.cancel()
             })
     }

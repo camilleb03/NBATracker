@@ -11,7 +11,7 @@ import Combine
 class PlayerDataService {
     
     @Published var allPlayers: [Player] = []
-    var playerSubscription: AnyCancellable?
+    private var playerSubscription: AnyCancellable?
     
     init() {
         getPlayers()

@@ -390,47 +390,273 @@ extension PlayerDetailRawResponse: Decodable {
     }
 }
 
-struct PlayerDetail: Decodable {
-    let teamID: String?
-    let stats: PlayerStats?
+struct PlayerDetail {
+    let currentTeamID: String?
+    let careerSummary: PlayerStats
+    let regularSeason: [Season]
+}
+
+extension PlayerDetail: Decodable {
     
-    enum CodingKeys: String, CodingKey {
-        case teamID = "teamId"
+    private enum RootKeys: String, CodingKey {
+        case currentTeamID = "teamId"
         case stats
+        
+        enum StatsKeys: String, CodingKey {
+            case careerSummary
+            case regularSeason
+            
+            enum RegularSeasonKeys: String, CodingKey {
+                case season
+            }
+        }
+    }
+    
+    init(from decoder: Decoder) throws {
+        
+        // Root level
+        let container = try decoder.container(keyedBy: RootKeys.self)
+        self.currentTeamID = try container.decode(String.self, forKey: .currentTeamID)
+        
+        // Stats level
+        let statsContainer = try container.nestedContainer(keyedBy: RootKeys.StatsKeys.self, forKey: .stats)
+        self.careerSummary = try statsContainer.decode(PlayerStats.self, forKey: .careerSummary)
+        
+        // Regular Season level
+        let regularSeasonContainer = try statsContainer.nestedContainer(keyedBy: RootKeys.StatsKeys.RegularSeasonKeys.self, forKey: .regularSeason)
+        self.regularSeason = try regularSeasonContainer.decode([Season].self, forKey: .season)
     }
 }
 
-struct PlayerStats: Codable {
-    let latest, careerSummary: CareerSummary?
-    let regularSeason: RegularSeason?
+struct PlayerStats {
+    
+    let teamID: String?
+    
+    // Totals
+    let totalPoints, totalRebounds, totalAssists, totalBlocks, totalSteals: Int
+    let totalMin, totalTurnovers, totalPersonalFouls: Int
+    let totalOffRebounds, totalDefRebounds: Int
+    let gamesPlayed, gamesStarted: Int
+    let totalDD2, totalTD3: Int
+    let plusMinus: Double
+    
+    // Averages per game
+    let mpg: Double
+    let ppg: Double
+    let apg: Double
+    let rpg: Double
+    let spg: Double
+    let bpg: Double
+    let topg: Double
+    
+    // Shooting stats
+    let fgm, fga: Int
+    let fgp: Double
+    let tpm, tpa: Int
+    let tpp: Double
+    let ftm, fta: Int
+    let ftp: Double
 }
 
-struct CareerSummary: Codable {
-    let tpp, ftp, fgp, ppg: String?
-    let rpg, apg, bpg, mpg: String?
-    let spg, assists, blocks, steals: String?
-    let turnovers, offReb, defReb, totReb: String?
-    let fgm, fga, tpm, tpa: String?
-    let ftm, fta, pFouls, points: String?
-    let gamesPlayed, gamesStarted, plusMinus, min: String?
-    let dd2, td3: String?
-    let seasonYear, seasonStageID: Int?
-    let topg, teamID: String?
-
-    enum CodingKeys: String, CodingKey {
-        case tpp, ftp, fgp, ppg, rpg, apg, bpg, mpg, spg, assists, blocks, steals, turnovers, offReb, defReb, totReb, fgm, fga, tpm, tpa, ftm, fta, pFouls, points, gamesPlayed, gamesStarted, plusMinus, min, dd2, td3, seasonYear
-        case seasonStageID = "seasonStageId"
-        case topg
+extension PlayerStats: Decodable {
+    
+    private enum RootKeys: String, CodingKey {
+        
         case teamID = "teamId"
+        case totalMin = "min"
+        case totalPoints = "points"
+        case totalRebounds = "totReb"
+        case totalAssists = "assists"
+        case totalSteals = "steals"
+        case totalBlocks = "blocks"
+        case totalOffRebounds = "offReb"
+        case totalDefRebounds = "defReb"
+        case totalTurnovers = "turnovers"
+        case totalPersonalFouls = "pFouls"
+        case gamesPlayed, gamesStarted, plusMinus
+        case totalDD2 = "dd2"
+        case totalTD3 = "td3"
+        case mpg, ppg, apg, rpg, spg, bpg, topg
+        case fgm, fga, fgp
+        case ftm, fta, ftp
+        case tpm, tpa, tpp
+    }
+    
+    init(from decoder: Decoder) throws {
+        // MARK: Root level
+        let container = try decoder.container(keyedBy: RootKeys.self)
+        
+        self.teamID = try container.decodeIfPresent(String.self, forKey: .teamID)
+        
+        // MARK: - Totals stats
+        // MARK: General stats
+        guard let totalMin = Int(try container.decode(String.self, forKey: .totalMin)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalMin], debugDescription: "Value for \"\(RootKeys.totalMin.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalMin = totalMin
+        
+        guard let totalPoints = Int(try container.decode(String.self, forKey: .totalPoints)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalPoints], debugDescription: "Value for \"\(RootKeys.totalPoints.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalPoints = totalPoints
+        
+        guard let totalRebounds = Int(try container.decode(String.self, forKey: .totalRebounds)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalRebounds], debugDescription: "Value for \"\(RootKeys.totalRebounds.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalRebounds = totalRebounds
+        
+        guard let totalAssists = Int(try container.decode(String.self, forKey: .totalAssists)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalAssists], debugDescription: "Value for \"\(RootKeys.totalAssists.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalAssists = totalAssists
+        
+        guard let totalSteals = Int(try container.decode(String.self, forKey: .totalSteals)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalSteals], debugDescription: "Value for \"\(RootKeys.totalSteals.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalSteals = totalSteals
+        
+        guard let totalBlocks = Int(try container.decode(String.self, forKey: .totalBlocks)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalBlocks], debugDescription: "Value for \"\(RootKeys.totalBlocks.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalBlocks = totalBlocks
+        
+        guard let totalOffRebounds = Int(try container.decode(String.self, forKey: .totalOffRebounds)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalOffRebounds], debugDescription: "Value for \"\(RootKeys.totalOffRebounds.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalOffRebounds = totalOffRebounds
+        
+        guard let totalDefRebounds = Int(try container.decode(String.self, forKey: .totalDefRebounds)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalDefRebounds], debugDescription: "Value for \"\(RootKeys.totalDefRebounds.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalDefRebounds = totalDefRebounds
+        
+        guard let totalTurnovers = Int(try container.decode(String.self, forKey: .totalTurnovers)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalTurnovers], debugDescription: "Value for \"\(RootKeys.totalTurnovers.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalTurnovers = totalTurnovers
+        
+        guard let totalPersonalFouls = Int(try container.decode(String.self, forKey: .totalPersonalFouls)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalPersonalFouls], debugDescription: "Value for \"\(RootKeys.totalPersonalFouls.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalPersonalFouls = totalPersonalFouls
+        
+        guard let gamesPlayed = Int(try container.decode(String.self, forKey: .gamesPlayed)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.gamesPlayed], debugDescription: "Value for \"\(RootKeys.gamesPlayed.rawValue)\" needs to be a valid Int"))
+        }
+        self.gamesPlayed = gamesPlayed
+        
+        guard let gamesStarted = Int(try container.decode(String.self, forKey: .gamesStarted)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.gamesStarted], debugDescription: "Value for \"\(RootKeys.gamesStarted.rawValue)\" needs to be a valid Int"))
+        }
+        self.gamesStarted = gamesStarted
+        
+        // MARK: Advanced stats
+        guard let plusMinus = Double(try container.decode(String.self, forKey: .plusMinus)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.plusMinus], debugDescription: "Value for \"\(RootKeys.plusMinus.rawValue)\" needs to be a valid Double"))
+        }
+        self.plusMinus = plusMinus
+        
+        guard let totalDD2 = Int(try container.decode(String.self, forKey: .totalDD2)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalDD2], debugDescription: "Value for \"\(RootKeys.totalDD2.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalDD2 = totalDD2
+        
+        guard let totalTD3 = Int(try container.decode(String.self, forKey: .totalTD3)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.totalTD3], debugDescription: "Value for \"\(RootKeys.totalTD3.rawValue)\" needs to be a valid Int"))
+        }
+        self.totalTD3 = totalTD3
+        
+        // MARK: - Averages stats (mpg, ppg, apg, rpg, spg, bpg, topg)
+        
+        guard let mpg = Double(try container.decode(String.self, forKey: .mpg)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.mpg], debugDescription: "Value for \"\(RootKeys.mpg.rawValue)\" needs to be a valid Double"))
+        }
+        self.mpg = mpg
+        
+        guard let ppg = Double(try container.decode(String.self, forKey: .ppg)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.ppg], debugDescription: "Value for \"\(RootKeys.ppg.rawValue)\" needs to be a valid Double"))
+        }
+        self.ppg = ppg
+        
+        guard let apg = Double(try container.decode(String.self, forKey: .apg)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.apg], debugDescription: "Value for \"\(RootKeys.apg.rawValue)\" needs to be a valid Double"))
+        }
+        self.apg = apg
+        
+        guard let rpg = Double(try container.decode(String.self, forKey: .rpg)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.rpg], debugDescription: "Value for \"\(RootKeys.rpg.rawValue)\" needs to be a valid Double"))
+        }
+        self.rpg = rpg
+        
+        guard let spg = Double(try container.decode(String.self, forKey: .spg)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.spg], debugDescription: "Value for \"\(RootKeys.spg.rawValue)\" needs to be a valid Double"))
+        }
+        self.spg = spg
+        
+        guard let bpg = Double(try container.decode(String.self, forKey: .bpg)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.bpg], debugDescription: "Value for \"\(RootKeys.bpg.rawValue)\" needs to be a valid Double"))
+        }
+        self.bpg = bpg
+        
+        guard let topg = Double(try container.decode(String.self, forKey: .topg)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.topg], debugDescription: "Value for \"\(RootKeys.topg.rawValue)\" needs to be a valid Double"))
+        }
+        self.topg = topg
+        
+        // MARK: - Shooting stats
+        
+        // MARK: Field goal stats
+        guard let fgm = Int(try container.decode(String.self, forKey: .fgm)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.fgm], debugDescription: "Value for \"\(RootKeys.fgm.rawValue)\" needs to be a valid Int"))
+        }
+        self.fgm = fgm
+        
+        guard let fga = Int(try container.decode(String.self, forKey: .fga)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.fga], debugDescription: "Value for \"\(RootKeys.fga.rawValue)\" needs to be a valid Int"))
+        }
+        self.fga = fga
+        
+        guard let fgp = Double(try container.decode(String.self, forKey: .fgp)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.fgp], debugDescription: "Value for \"\(RootKeys.fgp.rawValue)\" needs to be a valid Double"))
+        }
+        self.fgp = fgp / 100
+        
+        // MARK: Free throws stats
+        guard let ftm = Int(try container.decode(String.self, forKey: .ftm)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.ftm], debugDescription: "Value for \"\(RootKeys.ftm.rawValue)\" needs to be a valid Int"))
+        }
+        self.ftm = ftm
+        
+        guard let fta = Int(try container.decode(String.self, forKey: .fta)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.fta], debugDescription: "Value for \"\(RootKeys.fta.rawValue)\" needs to be a valid Int"))
+        }
+        self.fta = fta
+        
+        guard let ftp = Double(try container.decode(String.self, forKey: .ftp)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.ftp], debugDescription: "Value for \"\(RootKeys.ftp.rawValue)\" needs to be a valid Double"))
+        }
+        self.ftp = ftp / 100
+        
+        // MARK: Three points stats
+        guard let tpm = Int(try container.decode(String.self, forKey: .tpm)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.tpm], debugDescription: "Value for \"\(RootKeys.tpm.rawValue)\" needs to be a valid Int"))
+        }
+        self.tpm = tpm
+        
+        guard let tpa = Int(try container.decode(String.self, forKey: .tpa)) else {
+            throw DecodingError.typeMismatch(Int.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.tpa], debugDescription: "Value for \"\(RootKeys.tpa.rawValue)\" needs to be a valid Int"))
+        }
+        self.tpa = tpa
+        
+        guard let tpp = Double(try container.decode(String.self, forKey: .tpp)) else {
+            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.tpp], debugDescription: "Value for \"\(RootKeys.tpp.rawValue)\" needs to be a valid Double"))
+        }
+        self.tpp = tpp / 100
     }
 }
 
-struct RegularSeason: Codable {
-    let season: [Season]?
-}
-
-struct Season: Codable {
+struct Season: Decodable {
     let seasonYear: Int?
-    let teams: [CareerSummary]?
-    let total: CareerSummary?
+    let teams: [PlayerStats]?
+    let total: PlayerStats?
 }
