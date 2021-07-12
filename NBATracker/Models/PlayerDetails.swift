@@ -447,7 +447,7 @@ struct PlayerStats {
     let rpg: Double
     let spg: Double
     let bpg: Double
-    let topg: Double
+    let topg: Double?
     
     // Shooting stats
     let fgm, fga: Int
@@ -598,10 +598,14 @@ extension PlayerStats: Decodable {
         }
         self.bpg = bpg
         
-        guard let topg = Double(try container.decode(String.self, forKey: .topg)) else {
-            throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.topg], debugDescription: "Value for \"\(RootKeys.topg.rawValue)\" needs to be a valid Double"))
+        if container.contains(RootKeys.topg) {
+            guard let topg = Double(try container.decode(String.self, forKey: .topg)) else {
+                throw DecodingError.typeMismatch(Double.self, DecodingError.Context(codingPath: container.codingPath + [RootKeys.topg], debugDescription: "Value for \"\(RootKeys.topg.rawValue)\" needs to be a valid Double"))
+            }
+            self.topg = topg
+        } else {
+            self.topg = nil
         }
-        self.topg = topg
         
         // MARK: - Shooting stats
         

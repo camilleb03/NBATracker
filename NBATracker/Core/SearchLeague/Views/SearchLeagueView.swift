@@ -40,6 +40,7 @@ struct SearchLeagueView: View {
                 Spacer(minLength: 0)
             }
         }
+        .navigationBarTitle("Search League")
     }
 }
 
@@ -63,8 +64,11 @@ extension SearchLeagueView {
     private var allPlayersList: some View {
         List {
             ForEach(vm.allPlayers) { player in
-                PlayerRowView(player: player)
-                    .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
+                
+                NavigationLink(destination: PlayerProfileView(player: player)) {
+                    PlayerRowView(player: player)
+                        .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
+                }
             }
         }
         .listStyle(PlainListStyle())

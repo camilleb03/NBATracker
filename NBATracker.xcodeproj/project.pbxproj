@@ -21,6 +21,8 @@
 		912D88E52679379000AA3CCF /* ScoreboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D88E42679379000AA3CCF /* ScoreboardViewModel.swift */; };
 		912D88E82679394100AA3CCF /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D88E72679394100AA3CCF /* ScoreboardView.swift */; };
 		912D88EB2679BBCD00AA3CCF /* ScoreboardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D88EA2679BBCD00AA3CCF /* ScoreboardRowView.swift */; };
+		912FAC0F2698A1D60017E2A8 /* PlayerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912FAC0E2698A1D60017E2A8 /* PlayerProfileView.swift */; };
+		912FAC112698A60A0017E2A8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912FAC102698A60A0017E2A8 /* MainView.swift */; };
 		916C60DB2685260400B1CFA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916C60DA2685260400B1CFA6 /* LaunchScreen.storyboard */; };
 		916C60DD2685261800B1CFA6 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916C60DC2685261800B1CFA6 /* LaunchView.swift */; };
 		9185759A268847E000896AE8 /* TeamTotalStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91857599268847E000896AE8 /* TeamTotalStatsView.swift */; };
@@ -44,6 +46,7 @@
 		9198B18026785A6C00327C97 /* TeamImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198B17F26785A6C00327C97 /* TeamImageService.swift */; };
 		9198B192267864B800327C97 /* TeamDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198B191267864B800327C97 /* TeamDataService.swift */; };
 		91A651CF2686CD3F002042D7 /* GameColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A651CE2686CD3F002042D7 /* GameColumnView.swift */; };
+		91BA0333269543B500221ABD /* PlayerProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BA0332269543B500221ABD /* PlayerProfileViewModel.swift */; };
 		91D78241267BD8890052A5DB /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D78240267BD8890052A5DB /* HapticManager.swift */; };
 		91DE18792680F64100AB091D /* ScoreboardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DE18782680F64100AB091D /* ScoreboardDetailView.swift */; };
 		91DE187C2680F67400AB091D /* ScoreboardDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DE187B2680F67400AB091D /* ScoreboardDetailViewModel.swift */; };
@@ -78,6 +81,8 @@
 		912D88E42679379000AA3CCF /* ScoreboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardViewModel.swift; sourceTree = "<group>"; };
 		912D88E72679394100AA3CCF /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		912D88EA2679BBCD00AA3CCF /* ScoreboardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardRowView.swift; sourceTree = "<group>"; };
+		912FAC0E2698A1D60017E2A8 /* PlayerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileView.swift; sourceTree = "<group>"; };
+		912FAC102698A60A0017E2A8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		916C60DA2685260400B1CFA6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		916C60DC2685261800B1CFA6 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		91857599268847E000896AE8 /* TeamTotalStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTotalStatsView.swift; sourceTree = "<group>"; };
@@ -103,6 +108,7 @@
 		9198B17F26785A6C00327C97 /* TeamImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageService.swift; sourceTree = "<group>"; };
 		9198B191267864B800327C97 /* TeamDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDataService.swift; sourceTree = "<group>"; };
 		91A651CE2686CD3F002042D7 /* GameColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameColumnView.swift; sourceTree = "<group>"; };
+		91BA0332269543B500221ABD /* PlayerProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileViewModel.swift; sourceTree = "<group>"; };
 		91D78240267BD8890052A5DB /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		91DE18782680F64100AB091D /* ScoreboardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardDetailView.swift; sourceTree = "<group>"; };
 		91DE187B2680F67400AB091D /* ScoreboardDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardDetailViewModel.swift; sourceTree = "<group>"; };
@@ -197,6 +203,7 @@
 		919197B12676CADF006F6A7B /* NBATracker */ = {
 			isa = PBXGroup;
 			children = (
+				919197B22676CADF006F6A7B /* NBATrackerApp.swift */,
 				919197C52676CB01006F6A7B /* Utilities */,
 				919197C42676CAF9006F6A7B /* Extensions */,
 				919197C62676CB07006F6A7B /* Services */,
@@ -220,10 +227,11 @@
 		919197C22676CAEC006F6A7B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				919197B22676CADF006F6A7B /* NBATrackerApp.swift */,
+				912FAC102698A60A0017E2A8 /* MainView.swift */,
 				916C60D9268525F400B1CFA6 /* Launch */,
 				91F2C6E926772CD80064E3C5 /* Components */,
 				91F2C6E52677241B0064E3C5 /* SearchLeague */,
+				91BA032F2695438300221ABD /* PlayerProfile */,
 				9198B1762678574600327C97 /* Scoreboard */,
 				91DE18762680F5FA00AB091D /* ScoreboardDetail */,
 			);
@@ -329,6 +337,31 @@
 				9198B17F26785A6C00327C97 /* TeamImageService.swift */,
 			);
 			path = Team;
+			sourceTree = "<group>";
+		};
+		91BA032F2695438300221ABD /* PlayerProfile */ = {
+			isa = PBXGroup;
+			children = (
+				91BA03312695439900221ABD /* ViewModels */,
+				91BA03302695439200221ABD /* Views */,
+			);
+			path = PlayerProfile;
+			sourceTree = "<group>";
+		};
+		91BA03302695439200221ABD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				912FAC0E2698A1D60017E2A8 /* PlayerProfileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		91BA03312695439900221ABD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				91BA0332269543B500221ABD /* PlayerProfileViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		91D56FBD2688047C007FA766 /* TeamTotalStats */ = {
@@ -508,10 +541,12 @@
 				919197B32676CADF006F6A7B /* NBATrackerApp.swift in Sources */,
 				9198B18026785A6C00327C97 /* TeamImageService.swift in Sources */,
 				9107A310268AA8220070D6E7 /* TeamLeadersView.swift in Sources */,
+				912FAC112698A60A0017E2A8 /* MainView.swift in Sources */,
 				912D88E22679335C00AA3CCF /* ScoreboardDataService.swift in Sources */,
 				91F2C6F026772D370064E3C5 /* PlayerImageViewModel.swift in Sources */,
 				9107A318268AE3AE0070D6E7 /* TeamLeaderStatView.swift in Sources */,
 				912D88DA267930E100AA3CCF /* Scoreboard.swift in Sources */,
+				912FAC0F2698A1D60017E2A8 /* PlayerProfileView.swift in Sources */,
 				9185759E2689072700896AE8 /* TeamGeneralStatBarView.swift in Sources */,
 				91F2C6F626772FBA0064E3C5 /* SearchLeagueView.swift in Sources */,
 				91189C962687C5CA006A88B6 /* GameScoreTableView.swift in Sources */,
@@ -536,6 +571,7 @@
 				9185759A268847E000896AE8 /* TeamTotalStatsView.swift in Sources */,
 				91273B07268992C800A62B41 /* TeamShootingStatBarView.swift in Sources */,
 				9185759C2689000F00896AE8 /* ProgressBarView.swift in Sources */,
+				91BA0333269543B500221ABD /* PlayerProfileViewModel.swift in Sources */,
 				91DE187C2680F67400AB091D /* ScoreboardDetailViewModel.swift in Sources */,
 				9107A316268AD9AB0070D6E7 /* BarChartView.swift in Sources */,
 				91DE18792680F64100AB091D /* ScoreboardDetailView.swift in Sources */,

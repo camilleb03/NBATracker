@@ -18,6 +18,15 @@ extension Date {
         self.init(timeInterval: 0, since: date)
     }
     
+    // "1996-10-30"
+    init(birthDateString: String) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        let date = formatter.date(from: birthDateString) ?? Date()
+        self.init(timeInterval: 0, since: date)
+    }
+    
     private static let localTimeShort: DateFormatter = {
         let formatter = DateFormatter()
         var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "UTC" }
