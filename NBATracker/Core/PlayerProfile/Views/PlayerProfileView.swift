@@ -14,6 +14,7 @@ struct PlayerProfileView: View {
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible()),
+        GridItem(.flexible()),
     ]
     
     init(player: Player) {
@@ -29,8 +30,7 @@ struct PlayerProfileView: View {
             // content
             ScrollView {
                 VStack {
-                    
-                    playerName
+                    playerHeader
                     playerBioTitle
                     Divider()
                     playerBioList
@@ -41,27 +41,39 @@ struct PlayerProfileView: View {
                 }
                 .padding()
             }
+            .navigationTitle(
+                Text("\(vm.player.firstName) \(vm.player.lastName)")
+            )
         }
     }
 }
 
 struct PlayerProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerProfileView(player: dev.activePlayer1)
+        Group {
+            NavigationView {
+                PlayerProfileView(player: dev.activePlayer1)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle("Players")
+            }
+            .preferredColorScheme(.light)
+            
+            NavigationView {
+                PlayerProfileView(player: dev.inactivePlayer1)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle("Players")
+            }
+            .preferredColorScheme(.dark)
+        }
     }
 }
 
 extension PlayerProfileView {
     
-    private var playerName: some View {
-        VStack {
-            PlayerImageView(playerID: vm.player.id)
-            Text("\(vm.player.firstName) \(vm.player.lastName)")
-                .font(.title)
-                .fontWeight(.semibold)
-                .foregroundColor(Color.theme.accent)
-                .frame(maxWidth: .infinity)
-        }
+    private var playerHeader: some View {
+        PlayerImageView(playerID: vm.player.id)
+            .frame(width: 250, height: 250)
+            .padding(4)
     }
     
     private var playerBioTitle: some View {
@@ -75,10 +87,8 @@ extension PlayerProfileView {
     private var playerBioList: some View {
         LazyVGrid(columns: [GridItem()],
                   alignment: .leading,
-                  spacing: 30,
+                  spacing: 10,
                   content: {
-                    Text("Position: \(vm.player.pos ?? "N/A")")
-                    Text("Number: \(vm.player.jersey ?? "N/A")")
                     ForEach(vm.allPlayerBio) { info in
                         Text("\(info.title.capitalized): \(info.value)")
                     }
@@ -103,7 +113,7 @@ extension PlayerProfileView {
                         VStack {
                             Text(stat.title.uppercased())
                             
-                            Text(stat.value.convertDoubleToString())
+                            Text(stat.value)
                         }
                     }
                   })

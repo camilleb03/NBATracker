@@ -22,15 +22,27 @@ extension Double {
         return Double.percentageFormatter1.string(from: number) ?? "N/A"
     }
     
-    private static let doubleFormatter1: NumberFormatter = {
+    private static let statFormatter1: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 1
         return formatter
     }()
     
-    func convertDoubleToString() -> String {
+    func convertStatToString() -> String {
         let number = NSNumber(value: self)
-        return Double.doubleFormatter1.string(from: number) ?? "N/A"
+        return Double.statFormatter1.string(from: number) ?? "N/A"
+    }
+    
+    private static let metricFormatter2: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
+    
+    func convertMetricToString() -> String {
+        let number = NSNumber(value: self)
+        return Double.metricFormatter2.string(from: number) ?? "N/A"
     }
 }

@@ -12,7 +12,7 @@ class PlayerProfileViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var player: Player
     @Published var allPlayerBio: [GameStatistic<String>] = []
-    @Published var allCareerStats: [GameStatistic<Double>] = []
+    @Published var allCareerStats: [GameStatistic<String>] = []
     
     private let playerDetailsDataService: PlayerDetailDataService
     private var cancellables = Set<AnyCancellable>()
@@ -39,38 +39,38 @@ class PlayerProfileViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    private func mapPlayerDetailsToStatistics(playerDetails: PlayerDetail?) -> [GameStatistic<Double>] {
+    private func mapPlayerDetailsToStatistics(playerDetails: PlayerDetail?) -> [GameStatistic<String>] {
         
-        var careerAverageStats: [GameStatistic<Double>] = []
+        var careerAverageStats: [GameStatistic<String>] = []
         
         if let playerDetails = playerDetails {
             let careerSummary = playerDetails.careerSummary
-            let gamesPlayed = GameStatistic<Double>(title: "g", value: Double(careerSummary.gamesPlayed))
-            let gamesStarted = GameStatistic<Double>(title: "gs", value: Double(careerSummary.gamesStarted))
-            let mpg = GameStatistic<Double>(title: "mpg", value: careerSummary.mpg)
-            let ppg = GameStatistic<Double>(title: "ppg", value: careerSummary.ppg)
-            let apg = GameStatistic<Double>(title: "apg", value: careerSummary.apg)
-            let rpg = GameStatistic<Double>(title: "rpg", value: careerSummary.rpg)
-            let spg = GameStatistic<Double>(title: "spg", value: careerSummary.spg)
-            let bpg = GameStatistic<Double>(title: "bpg", value: careerSummary.bpg)
+            let gamesPlayed = GameStatistic<String>(title: "g", value: "\(careerSummary.gamesPlayed)")
+            let gamesStarted = GameStatistic<String>(title: "gs", value: "\(careerSummary.gamesStarted)")
+            let mpg = GameStatistic<String>(title: "mpg", value: careerSummary.mpg.convertStatToString())
+            let ppg = GameStatistic<String>(title: "ppg", value: careerSummary.ppg.convertStatToString())
+            let apg = GameStatistic<String>(title: "apg", value: careerSummary.apg.convertStatToString())
+            let rpg = GameStatistic<String>(title: "rpg", value: careerSummary.rpg.convertStatToString())
+            let spg = GameStatistic<String>(title: "spg", value: careerSummary.spg.convertStatToString())
+            let bpg = GameStatistic<String>(title: "bpg", value: careerSummary.bpg.convertStatToString())
             
             careerAverageStats.append(contentsOf: [
                 gamesPlayed, gamesStarted, mpg, ppg, apg, rpg, spg, bpg,
             ])
             
             if let topg = careerSummary.topg {
-                careerAverageStats.append(GameStatistic<Double>(title: "topg", value: topg))
+                careerAverageStats.append(GameStatistic<String>(title: "topg", value: topg.convertStatToString()))
             }
             
-            let fgp = GameStatistic<Double>(title: "fg%", value: careerSummary.fgp)
-            let tpp = GameStatistic<Double>(title: "tp%", value: careerSummary.tpp)
-            let ftp = GameStatistic<Double>(title: "ft%", value: careerSummary.ftp)
+            let fgp = GameStatistic<String>(title: "fg%", value: careerSummary.fgp.convertDoubleToPercentString())
+            let tpp = GameStatistic<String>(title: "tp%", value: careerSummary.tpp.convertDoubleToPercentString())
+            let ftp = GameStatistic<String>(title: "ft%", value: careerSummary.ftp.convertDoubleToPercentString())
             
-            let plusMinus = GameStatistic<Double>(title: "+/-", value: careerSummary.plusMinus)
+            let plusMinus = GameStatistic<String>(title: "+/-", value: careerSummary.plusMinus.convertStatToString())
             
-            let totalDD2 = GameStatistic<Double>(title: "dd2", value: Double(careerSummary.totalDD2))
+            let totalDD2 = GameStatistic<String>(title: "dd2", value: "\(careerSummary.totalDD2)")
             
-            let totalTD3 = GameStatistic<Double>(title: "td3", value: Double(careerSummary.totalTD3))
+            let totalTD3 = GameStatistic<String>(title: "td3", value: "\(careerSummary.totalTD3)")
             
             careerAverageStats.append(contentsOf: [
                 fgp, tpp, ftp, plusMinus, totalDD2, totalTD3,
@@ -80,11 +80,44 @@ class PlayerProfileViewModel: ObservableObject {
         return careerAverageStats
     }
     
-    private func mapPlayerToBio(player: Player) -> [GameStatistic<String>]{
+    private func mapPlayerToBio(player: Player) -> [GameStatistic<String>] {
         
         var playerBio: [GameStatistic<String>] = []
+        
         if let dateOfBirthString = player.dateOfBirthUTC {
             playerBio.append(GameStatistic<String>(title: "born", value: dateOfBirthString))
+        }
+        
+        if let college = player.collegeName {
+            playerBio.append(GameStatistic<String>(title: "college", value: college))
+        }
+        
+        if let country = player.country {
+            playerBio.append(GameStatistic<String>(title: "country", value: country))
+        }
+        
+        if let debutYear = player.nbaDebutYear {
+            playerBio.append(GameStatistic<String>(title: "debut", value: debutYear))
+        }
+        
+        if let jersey = player.jersey {
+            playerBio.append(GameStatistic<String>(title: "number", value: "#" + jersey))
+        }
+        
+        if let position = player.pos {
+            playerBio.append(GameStatistic<String>(title: "position", value: position))
+        }
+        
+        if let height = player.heightMeters {
+            playerBio.append(GameStatistic<String>(title: "height", value: height.convertMetricToString() + "m"))
+        }
+        
+        if let weight = player.weightKilograms {
+            playerBio.append(GameStatistic<String>(title: "weight", value: weight.convertMetricToString() + "kg"))
+        }
+        
+        if let draft = player.draft {
+            playerBio.append(GameStatistic<String>(title: "draft", value: "#" + draft.pickNum + ", Round " + draft.roundNum + " (\(draft.seasonYear))"))
         }
         
         return playerBio
