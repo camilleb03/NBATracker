@@ -31,18 +31,20 @@ struct PlayerProfileView: View {
             ScrollView {
                 VStack {
                     playerHeader
+                    
                     playerBioTitle
                     Divider()
                     playerBioList
+                    
                     careerStatsSummaryTitle
                     Divider()
                     careerStatsSummaryGrid
-                    Spacer()
                 }
                 .padding()
             }
-            .navigationTitle(
-                Text("\(vm.player.firstName) \(vm.player.lastName)")
+            .navigationBarTitle(
+                Text("\(vm.player.firstName) \(vm.player.lastName)"),
+                displayMode: .inline
             )
         }
     }
@@ -71,9 +73,16 @@ struct PlayerProfileView_Previews: PreviewProvider {
 extension PlayerProfileView {
     
     private var playerHeader: some View {
-        PlayerImageView(playerID: vm.player.id)
-            .frame(width: 250, height: 250)
-            .padding(4)
+        VStack {
+            PlayerImageView(playerID: vm.player.id)
+                .frame(width: 250)
+                .background(Color.theme.secondaryBackgroundImage)
+                .clipShape(Circle())
+                .padding(4)
+            
+            Text("\(vm.player.id) • \(vm.player.pos ?? " ") • #\(vm.player.jersey ?? " ")")
+        }
+        .padding(.bottom, 5)
     }
     
     private var playerBioTitle: some View {
@@ -90,9 +99,20 @@ extension PlayerProfileView {
                   spacing: 10,
                   content: {
                     ForEach(vm.allPlayerBio) { info in
-                        Text("\(info.title.capitalized): \(info.value)")
+                        HStack {
+                            Text("\(info.title.capitalized) :")
+                                .font(.subheadline)
+                                .foregroundColor(Color.theme.secondaryText)
+                            
+                            Spacer()
+                            
+                            Text(info.value)
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
                     }
-                  })
+                  }
+        )
     }
     
     private var careerStatsSummaryTitle: some View {
@@ -105,17 +125,20 @@ extension PlayerProfileView {
     
     private var careerStatsSummaryGrid: some View {
         LazyVGrid(columns: columns,
-                  alignment: .center,
+                  alignment: .leading,
                   spacing: 30,
                   pinnedViews: [],
                   content: {
                     ForEach(vm.allCareerStats) { stat in
                         VStack {
                             Text(stat.title.uppercased())
-                            
+                                .font(.subheadline)
+                                .foregroundColor(Color.theme.secondaryText)
                             Text(stat.value)
+                                .font(.headline)
                         }
                     }
-                  })
+                  }
+        )
     }
 }

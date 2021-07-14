@@ -25,6 +25,8 @@ struct PlayerImageView: View {
                 ProgressView()
             } else {
                 Image(systemName: "person")
+                    .resizable()
+                    .scaledToFit()
                     .foregroundColor(Color.theme.secondaryText)
             }
         }
@@ -40,6 +42,11 @@ struct PlayerImageView_Previews: PreviewProvider {
                 .preferredColorScheme(.light)
             
             PlayerImageView(playerID: dev.activePlayer2.id)
+                .padding()
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
+            
+            PlayerImageView(playerID: "1")
                 .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)

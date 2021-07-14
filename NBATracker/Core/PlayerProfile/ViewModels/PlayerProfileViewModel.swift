@@ -84,8 +84,8 @@ class PlayerProfileViewModel: ObservableObject {
         
         var playerBio: [GameStatistic<String>] = []
         
-        if let dateOfBirthString = player.dateOfBirthUTC {
-            playerBio.append(GameStatistic<String>(title: "born", value: dateOfBirthString))
+        if let dateOfBirthString = player.dateOfBirthUTC, let age = Calendar.current.dateComponents([.year], from: Date(birthDateString: dateOfBirthString), to: Date()).year {
+            playerBio.append(GameStatistic<String>(title: "born", value: "\(dateOfBirthString) (Age \(age))"))
         }
         
         if let college = player.collegeName {
@@ -96,18 +96,6 @@ class PlayerProfileViewModel: ObservableObject {
             playerBio.append(GameStatistic<String>(title: "country", value: country))
         }
         
-        if let debutYear = player.nbaDebutYear {
-            playerBio.append(GameStatistic<String>(title: "debut", value: debutYear))
-        }
-        
-        if let jersey = player.jersey {
-            playerBio.append(GameStatistic<String>(title: "number", value: "#" + jersey))
-        }
-        
-        if let position = player.pos {
-            playerBio.append(GameStatistic<String>(title: "position", value: position))
-        }
-        
         if let height = player.heightMeters {
             playerBio.append(GameStatistic<String>(title: "height", value: height.convertMetricToString() + "m"))
         }
@@ -116,8 +104,12 @@ class PlayerProfileViewModel: ObservableObject {
             playerBio.append(GameStatistic<String>(title: "weight", value: weight.convertMetricToString() + "kg"))
         }
         
+        if let debutYear = player.nbaDebutYear {
+            playerBio.append(GameStatistic<String>(title: "debut", value: debutYear))
+        }
+        
         if let draft = player.draft {
-            playerBio.append(GameStatistic<String>(title: "draft", value: "#" + draft.pickNum + ", Round " + draft.roundNum + " (\(draft.seasonYear))"))
+            playerBio.append(GameStatistic<String>(title: "draft", value: "\(draft.seasonYear) R\(draft.roundNum) Pick \(draft.pickNum)"))
         }
         
         return playerBio
