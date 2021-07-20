@@ -14,7 +14,7 @@ struct MainView: View {
     var body: some View {
         TabView(selection: $selection) {
             
-            Text("League Standings \n Coming soon...")
+            ConfStandingsView()
             .tabItem {
                 Label("Standings", systemImage: "list.number")
                     .foregroundColor(Color.theme.accent)

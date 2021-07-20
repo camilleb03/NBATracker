@@ -25,6 +25,10 @@
 		912FAC112698A60A0017E2A8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912FAC102698A60A0017E2A8 /* MainView.swift */; };
 		916C60DB2685260400B1CFA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916C60DA2685260400B1CFA6 /* LaunchScreen.storyboard */; };
 		916C60DD2685261800B1CFA6 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916C60DC2685261800B1CFA6 /* LaunchView.swift */; };
+		916EB58026A7310E00962D98 /* ConferenceStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916EB57F26A7310E00962D98 /* ConferenceStandings.swift */; };
+		916EB58226A7368D00962D98 /* ConfStandingsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916EB58126A7368D00962D98 /* ConfStandingsDataService.swift */; };
+		916EB58726A73A0200962D98 /* ConfStandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916EB58626A73A0200962D98 /* ConfStandingsViewModel.swift */; };
+		916EB58926A73A1300962D98 /* ConfStandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916EB58826A73A1300962D98 /* ConfStandingsView.swift */; };
 		9185759A268847E000896AE8 /* TeamTotalStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91857599268847E000896AE8 /* TeamTotalStatsView.swift */; };
 		9185759C2689000F00896AE8 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185759B2689000F00896AE8 /* ProgressBarView.swift */; };
 		9185759E2689072700896AE8 /* TeamGeneralStatBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185759D2689072700896AE8 /* TeamGeneralStatBarView.swift */; };
@@ -85,6 +89,10 @@
 		912FAC102698A60A0017E2A8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		916C60DA2685260400B1CFA6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		916C60DC2685261800B1CFA6 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		916EB57F26A7310E00962D98 /* ConferenceStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceStandings.swift; sourceTree = "<group>"; };
+		916EB58126A7368D00962D98 /* ConfStandingsDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfStandingsDataService.swift; sourceTree = "<group>"; };
+		916EB58626A73A0200962D98 /* ConfStandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfStandingsViewModel.swift; sourceTree = "<group>"; };
+		916EB58826A73A1300962D98 /* ConfStandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfStandingsView.swift; sourceTree = "<group>"; };
 		91857599268847E000896AE8 /* TeamTotalStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTotalStatsView.swift; sourceTree = "<group>"; };
 		9185759B2689000F00896AE8 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		9185759D2689072700896AE8 /* TeamGeneralStatBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamGeneralStatBarView.swift; sourceTree = "<group>"; };
@@ -184,6 +192,31 @@
 			path = Launch;
 			sourceTree = "<group>";
 		};
+		916EB58326A739AB00962D98 /* ConferenceStandings */ = {
+			isa = PBXGroup;
+			children = (
+				916EB58426A739CF00962D98 /* ViewModels */,
+				916EB58526A739E800962D98 /* Views */,
+			);
+			path = ConferenceStandings;
+			sourceTree = "<group>";
+		};
+		916EB58426A739CF00962D98 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				916EB58626A73A0200962D98 /* ConfStandingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		916EB58526A739E800962D98 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				916EB58826A73A1300962D98 /* ConfStandingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		919197A62676CADF006F6A7B = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +263,7 @@
 				912FAC102698A60A0017E2A8 /* MainView.swift */,
 				916C60D9268525F400B1CFA6 /* Launch */,
 				91F2C6E926772CD80064E3C5 /* Components */,
+				916EB58326A739AB00962D98 /* ConferenceStandings */,
 				91F2C6E52677241B0064E3C5 /* SearchLeague */,
 				91BA032F2695438300221ABD /* PlayerProfile */,
 				9198B1762678574600327C97 /* Scoreboard */,
@@ -242,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				91FCDBD4267D336F00C5B4EE /* Boxscore.swift */,
+				916EB57F26A7310E00962D98 /* ConferenceStandings.swift */,
 				91DE187D2680FC0B00AB091D /* GameStatistic.swift */,
 				919197D92676FE2A006F6A7B /* Player.swift */,
 				919197DC2677021A006F6A7B /* PlayerDetails.swift */,
@@ -280,6 +315,7 @@
 				912D88D82679309000AA3CCF /* Game */,
 				9198B194267864C100327C97 /* Player */,
 				9198B196267864E000327C97 /* Team */,
+				916EB58126A7368D00962D98 /* ConfStandingsDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -522,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916EB58926A73A1300962D98 /* ConfStandingsView.swift in Sources */,
 				91F2C6DC26771C2C0064E3C5 /* PlayerDataService.swift in Sources */,
 				9198B179267857B500327C97 /* TeamImageViewModel.swift in Sources */,
 				919197D72676E239006F6A7B /* Endpoint.swift in Sources */,
@@ -530,6 +567,7 @@
 				912D88DF2679326F00AA3CCF /* Date.swift in Sources */,
 				91FCDBD5267D336F00C5B4EE /* Boxscore.swift in Sources */,
 				918575A026890C9200896AE8 /* RefreshButton.swift in Sources */,
+				916EB58026A7310E00962D98 /* ConferenceStandings.swift in Sources */,
 				919197CB2676CB46006F6A7B /* NetworkingManager.swift in Sources */,
 				91F2C6E226771C700064E3C5 /* PlayerImageService.swift in Sources */,
 				912D88D226791C6A00AA3CCF /* TeamRowView.swift in Sources */,
@@ -557,6 +595,7 @@
 				919197C82676CB37006F6A7B /* Color.swift in Sources */,
 				9198B192267864B800327C97 /* TeamDataService.swift in Sources */,
 				91A651CF2686CD3F002042D7 /* GameColumnView.swift in Sources */,
+				916EB58726A73A0200962D98 /* ConfStandingsViewModel.swift in Sources */,
 				919197E026770224006F6A7B /* Team.swift in Sources */,
 				9198B17D267857C500327C97 /* TeamImageView.swift in Sources */,
 				912D88E82679394100AA3CCF /* ScoreboardView.swift in Sources */,
@@ -568,6 +607,7 @@
 				91F2C6F326772EBD0064E3C5 /* PlayerRowView.swift in Sources */,
 				91D78241267BD8890052A5DB /* HapticManager.swift in Sources */,
 				91F2C6DF26771C470064E3C5 /* PlayerDetailDataService.swift in Sources */,
+				916EB58226A7368D00962D98 /* ConfStandingsDataService.swift in Sources */,
 				9185759A268847E000896AE8 /* TeamTotalStatsView.swift in Sources */,
 				91273B07268992C800A62B41 /* TeamShootingStatBarView.swift in Sources */,
 				9185759C2689000F00896AE8 /* ProgressBarView.swift in Sources */,
