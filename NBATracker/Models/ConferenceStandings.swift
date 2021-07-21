@@ -9,7 +9,7 @@ import Foundation
 
 struct StandingsRawResponse {
     
-    let conferenceStandings: ConferenceStandings
+    let conferenceStandings: [TeamStandingInfo]
     
 }
 
@@ -49,29 +49,19 @@ extension StandingsRawResponse: Decodable {
         
         // Conference level
         let conferenceContainer = try standardContainer.nestedContainer(keyedBy: RootKeys.LeagueKeys.StandardKeys.ConferenceKeys.self, forKey: .conference)
-        let eastStandings = try conferenceContainer.decode([TeamStandingInfo].self, forKey: .east)
-        let westStandings = try conferenceContainer.decode([TeamStandingInfo].self, forKey: .west)
+        var eastStandings = try conferenceContainer.decode([TeamStandingInfo].self, forKey: .east)
+        eastStandings.indices.forEach({ eastStandings[$0].conference = .east })
         
-        self.conferenceStandings = ConferenceStandings(eastStandings: eastStandings, westStandings: westStandings)
+        var westStandings = try conferenceContainer.decode([TeamStandingInfo].self, forKey: .west)
+        westStandings.indices.forEach({ westStandings[$0].conference = .west })
         
+        self.conferenceStandings = westStandings + eastStandings
     }
 }
 
-struct ConferenceStandings {
+struct TeamStandingInfo: Identifiable {
     
-    internal init(eastStandings: [TeamStandingInfo], westStandings: [TeamStandingInfo]) {
-        self.eastStandings = eastStandings
-        self.westStandings = westStandings
-    }
-    
-    var eastStandings: [TeamStandingInfo]
-    var westStandings: [TeamStandingInfo]
-
-}
-
-struct TeamStandingInfo {
-    
-    let teamId: String
+    let id: String
     let teamTriCode: String
     let teamName: String
     let teamCity: String
@@ -82,6 +72,8 @@ struct TeamStandingInfo {
     let lastTen: String
     let streak: String
     let clinchedPlayoffs: Bool
+    
+    var conference: Conference? = nil
 }
 
 extension TeamStandingInfo: Decodable {
@@ -115,7 +107,7 @@ extension TeamStandingInfo: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         // Team id
-        self.teamId = try container.decode(String.self, forKey: .teamId)
+        self.id = try container.decode(String.self, forKey: .teamId)
         
         // Win number
         guard let winsInt = Int(try container.decode(String.self, forKey: .wins)) else {
@@ -164,3 +156,7 @@ extension TeamStandingInfo: Decodable {
     }
 }
 
+enum Conference {
+    case west
+    case east
+}

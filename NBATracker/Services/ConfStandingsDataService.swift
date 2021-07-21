@@ -10,7 +10,7 @@ import Combine
 
 class ConfStandingsDataService {
     
-    @Published var confStandings: ConferenceStandings?
+    @Published var confStandings: [TeamStandingInfo] = []
     var confStandingSubscription: AnyCancellable?
     
     init() {

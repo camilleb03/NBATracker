@@ -257,4 +257,8 @@ class DeveloperPreview {
                     player: nil)
             ))
     ]
+    
+    let westTeamStandingInfoFirst = TeamStandingInfo(id: "1610612762", teamTriCode: "UTA", teamName: "Jazz", teamCity: "Utah", wins: 52, losses: 20, winPercentage: 0.722, gamesBehind: 0.0, lastTen: "7-3", streak: "W2", clinchedPlayoffs: true)
+    
+    let eastTeamStandingInfoLast = TeamStandingInfo(id: "1610612765", teamTriCode: "DET", teamName: "Pistons", teamCity: "Detroit", wins: 20, losses: 52, winPercentage: 0.278, gamesBehind: 29.0, lastTen: "1-9", streak: "L5", clinchedPlayoffs: false)
 }
