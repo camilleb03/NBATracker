@@ -22,6 +22,8 @@ struct ConfStandingsView: View {
             NavigationView {
                 VStack {
                     
+                    filterPicker
+                    
                     columnsHeader
                         .padding(.horizontal)
                     
@@ -55,6 +57,15 @@ struct ConfStandingsView_Previews: PreviewProvider {
 }
 
 extension ConfStandingsView {
+    
+    private var filterPicker: some View {
+        Picker("", selection: $vm.filterOption.animation()) {
+            Text("East").tag(Conference.east)
+            Text("West").tag(Conference.west)
+        }
+        .pickerStyle(SegmentedPickerStyle())
+        .padding()
+    }
     
     private var columnsHeader: some View {
         HStack {
