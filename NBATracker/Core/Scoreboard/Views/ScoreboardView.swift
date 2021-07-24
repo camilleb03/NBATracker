@@ -44,7 +44,7 @@ struct ScoreboardView: View {
                     CustomDatePicker(gameDate: $vm.gameDate)
                    })
         }
-        .navigationTitle("Games for \(vm.gameDate.convertDateToLocalDateMediumString())")
+        .navigationTitle(vm.gameDate.convertDateToLocalDateMediumString())
         .toolbar(content: {
             
             ToolbarItem(placement: .navigationBarLeading) {

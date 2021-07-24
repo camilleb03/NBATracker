@@ -19,52 +19,30 @@ struct ConfStandingsView: View {
                 .ignoresSafeArea()
             
             // content layer
-            VStack {
-                
-                columnsHeader
-                    .padding(.horizontal)
-                
-                if !vm.allConfStandings.isEmpty {
-                    ScrollView {
-                        
-                        ForEach(Array(vm.allConfStandings.enumerated()), id: \.offset) { index, team in
-                            HStack {
-                                HStack {
-                                    Text("\(index + 1)")
-                                    
-                                    TeamImageView(teamTricode: team.teamTriCode, logoType: .secondary)
-                                        .frame(width: 25, height: 25)
-                                    
-                                    Text(team.teamName)
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                
-                                Spacer()
-                                
-                                HStack {
-                                    Text("\(team.wins)")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                    
-                                    Text("\(team.losses)")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                    
-                                    Text("\(team.gamesBehind.convertStatToString())")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                                .frame(maxWidth: .infinity, alignment: .trailing)
+            NavigationView {
+                VStack {
+                    
+                    columnsHeader
+                        .padding(.horizontal)
+                    
+                    if !vm.allConfStandings.isEmpty {
+                        ScrollView {
+                            
+                            ForEach(Array(vm.allConfStandings.enumerated()), id: \.offset) { index, team in
+                                ConfStandingsRowView(position: index+1, team: team)
                             }
                         }
+                        .padding(.horizontal)
+                    } else {
+                        
+                        Text("No teams")
+                            .font(.callout)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
                     }
-                    .padding(.horizontal)
-                } else {
-                    
-                    Text("No teams")
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .multilineTextAlignment(.center)
-                    
-                    Spacer()
                 }
+                .navigationTitle("Standings")
             }
         }
     }
@@ -85,20 +63,25 @@ extension ConfStandingsView {
                 
                 Text("Team")
             }
+            .font(.subheadline)
             .frame(maxWidth: .infinity, alignment: .leading)
             
             Spacer()
             
             HStack {
                 Text("W")
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(maxWidth: .infinity)
                 
                 Text("L")
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(maxWidth: .infinity)
+                
+                Text("PCT")
+                    .frame(maxWidth: .infinity)
                 
                 Text("GB")
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(maxWidth: .infinity)
             }
+            .font(.caption)
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
