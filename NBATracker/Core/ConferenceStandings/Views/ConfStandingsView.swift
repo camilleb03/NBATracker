@@ -30,7 +30,7 @@ struct ConfStandingsView: View {
                     if !vm.allConfStandings.isEmpty {
                         ScrollView {
                             
-                            ForEach(Array(vm.allConfStandings.enumerated()), id: \.offset) { index, team in
+                            ForEach(Array(vm.allConfStandings.enumerated()), id: \.1.id) { index, team in
                                 ConfStandingsRowView(position: index+1, team: team)
                             }
                         }
@@ -77,7 +77,7 @@ extension ConfStandingsView {
             .font(.subheadline)
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            Spacer()
+//            Spacer()
             
             HStack {
                 Text("W")
